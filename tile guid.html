@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <style>
+    #tileGuideSection {
+    background-color: #f1f1f1;
+    padding: 60px 0;
+  }
+
+  .tg-header {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+  .tg-header h2 {
+    font-size: 36px;
+    font-weight: lighter;
+    color: #333;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+  }
+  .tg-header p {
+    color: #777;
+    font-size: 15px;
+    margin-top: 8px;
+  }
+
+  /* Tab buttons */
+  .tg-tabs {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 35px;
+  }
+  .tg-tab-btn {
+    background: #fff;
+    border: 2px solid #ccc;
+    color: #555;
+    padding: 10px 24px;
+    border-radius: 30px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .tg-tab-btn:hover { border-color: #5b5b5b; color: #5b5b5b; }
+  .tg-tab-btn.active {
+    background: #5b5b5b;
+    border-color: #5b5b5b;
+    color: #fff;
+  }
+
+  /* Tab panels */
+  .tg-panel { display: none; }
+  .tg-panel.active { display: block; }
+
+  /* Cards inside each panel */
+  .tg-card {
+    background: #fff;
+    border-radius: 16px;
+    padding: 24px 20px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.07);
+    height: 100%;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    border-top: 4px solid #5b5b5b;
+  }
+  .tg-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.12);
+  }
+  .tg-card .tg-icon {
+    font-size: 2.2rem;
+    margin-bottom: 12px;
+  }
+  .tg-card h5 {
+    font-size: 17px;
+    font-weight: 700;
+    color: #2b2b2b;
+    margin-bottom: 8px;
+  }
+  .tg-card p {
+    font-size: 13.5px;
+    color: #666;
+    line-height: 1.65;
+    margin: 0;
+  }
+  .tg-card .tg-tag {
+    display: inline-block;
+    background: #5b5b5b;
+    color: #fff;
+    font-size: 10px;
+    padding: 3px 10px;
+    border-radius: 20px;
+    margin-bottom: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  /* Room guide table */
+  .tg-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+    background: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.07);
+  }
+  .tg-table thead tr {
+    background: #5b5b5b;
+    color: #fff;
+  }
+  .tg-table thead th {
+    padding: 14px 18px;
+    font-weight: 600;
+    text-align: left;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .tg-table tbody tr:nth-child(odd)  { background: #f9f9f9; }
+  .tg-table tbody tr:nth-child(even) { background: #fff; }
+  .tg-table tbody tr:hover { background: #f0f0f0; }
+  .tg-table tbody td {
+    padding: 13px 18px;
+    color: #444;
+    border-bottom: 1px solid #eee;
+    font-size: 13.5px;
+  }
+  .tg-table tbody td:first-child { font-weight: 700; color: #2b2b2b; }
+  .tick { color: #2d8a4e; font-weight: 700; }
+  .cross { color: #c0392b; font-weight: 700; }
+
+  /* Tip box */
+  .tg-tip {
+    background: #272727;
+    color: #fff;
+    border-radius: 12px;
+    padding: 20px 24px;
+    margin-top: 24px;
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    font-size: 14px;
+    line-height: 1.6;
+  }
+  .tg-tip .tip-icon { font-size: 1.6rem; flex-shrink: 0; }
+  .tg-tip strong { color: #f5c518; }
+    #tileGuideSection {
+    background-color: #1e1e1e;
+    padding: 70px 0;
+  }
+
+  .tg-header {
+    text-align: center;
+    margin-bottom: 50px;
+  }
+  .tg-header h2 {
+    font-size: 38px;
+    font-weight: 300;
+    color: #ffffff;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    margin-bottom: 10px;
+  }
+  .tg-header h2 span { color: #f5c518; }
+  .tg-header p {
+    color: #aaa;
+    font-size: 15px;
+    margin: 0;
+  }
+  .tg-header hr {
+    border: none;
+    border-top: 2px solid #f5c518;
+    width: 60px;
+    margin: 16px auto 0;
+  }
+
+  /* ── Tab Buttons ── */
+  .tg-tabs {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 40px;
+  }
+  .tg-tab-btn {
+    background: transparent;
+    border: 1px solid #555;
+    color: #aaa;
+    padding: 10px 22px;
+    border-radius: 4px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  .tg-tab-btn:hover { border-color: #f5c518; color: #f5c518; }
+  .tg-tab-btn.active {
+    background: #f5c518;
+    border-color: #f5c518;
+    color: #000;
+  }
+
+  /* ── Panels ── */
+  .tg-panel { display: none; }
+  .tg-panel.active { display: block; }
+
+  /*  Image Cards  */
+  .tg-img-card {
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    height: 280px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+  }
+  .tg-img-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+  }
+  .tg-img-card img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+  }
+  .tg-img-card:hover img { transform: scale(1.06); }
+  .tg-img-card .tg-img-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0.2) 55%, transparent 100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 20px;
+  }
+  .tg-img-card .tg-img-overlay .tg-badge {
+    display: inline-block;
+    background: #f5c518;
+    color: #000;
+    font-size: 10px;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 20px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 8px;
+    width: fit-content;
+  }
+  .tg-img-card .tg-img-overlay h5 {
+    color: #fff;
+    font-size: 17px;
+    font-weight: 700;
+    margin: 0 0 6px;
+  }
+  .tg-img-card .tg-img-overlay p {
+    color: #ccc;
+    font-size: 12.5px;
+    line-height: 1.55;
+    margin: 0;
+  }
+
+  /*Room Table */
+  .tg-table-wrap {
+    background: #2b2b2b;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+  }
+  .tg-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13.5px;
+  }
+  .tg-table thead tr { background: #111; }
+  .tg-table thead th {
+    padding: 14px 18px;
+    color: #f5c518;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    font-size: 12px;
+    text-align: left;
+  }
+  .tg-table tbody tr { border-bottom: 1px solid #3a3a3a; }
+  .tg-table tbody tr:hover { background: #333; }
+  .tg-table tbody td {
+    padding: 13px 18px;
+    color: #ccc;
+  }
+  .tg-table tbody td:first-child { color: #fff; font-weight: 600; }
+  .tg-tick { color: #5dbb7a; font-weight: 700; }
+  .tg-cross { color: #e05555; font-weight: 700; }
+
+  /* Tip Box*/
+  .tg-tip {
+    background: #2b2b2b;
+    border-left: 4px solid #f5c518;
+    border-radius: 8px;
+    padding: 18px 22px;
+    margin-top: 28px;
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    color: #ccc;
+    font-size: 14px;
+    line-height: 1.65;
+  }
+  .tg-tip .tip-icon { font-size: 1.5rem; flex-shrink: 0; }
+  .tg-tip strong { color: #f5c518; }
+
+  /*Size Visual Cards*/
+  .tg-size-card {
+    background: #2b2b2b;
+    border-radius: 12px;
+    padding: 28px 20px;
+    text-align: center;
+    height: 100%;
+    border: 1px solid #3a3a3a;
+    transition: all 0.25s ease;
+  }
+  .tg-size-card:hover {
+    border-color: #f5c518;
+    transform: translateY(-4px);
+  }
+  .tg-size-visual {
+    margin: 0 auto 16px;
+    background: #3a3a3a;
+    border: 2px solid #555;
+    border-radius: 4px;
+  }
+  .tg-size-card h5 { color: #fff; font-size: 16px; font-weight: 700; margin-bottom: 6px; }
+  .tg-size-card .tg-size-label {
+    display: inline-block;
+    background: #f5c518;
+    color: #000;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 3px 12px;
+    border-radius: 20px;
+    margin-bottom: 10px;
+  }
+  .tg-size-card p { color: #aaa; font-size: 13px; line-height: 1.6; margin: 0; }
+
+  /* Maintenance Steps  */
+  .tg-step {
+    display: flex;
+    gap: 18px;
+    align-items: flex-start;
+    background: #2b2b2b;
+    border-radius: 12px;
+    padding: 20px;
+    height: 100%;
+    border: 1px solid #3a3a3a;
+    transition: border-color 0.25s;
+  }
+  .tg-step:hover { border-color: #f5c518; }
+  .tg-step .step-num {
+    width: 40px; height: 40px;
+    background: #f5c518;
+    color: #000;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 700; font-size: 16px;
+    flex-shrink: 0;
+  }
+  .tg-step .step-body h5 { color: #fff; font-size: 15px; font-weight: 700; margin-bottom: 6px; }
+  .tg-step .step-body p  { color: #aaa; font-size: 13px; line-height: 1.6; margin: 0; }
+
+  </style>
+</head>
+<body>
+  <script src="/js/bootstrap.bundle.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+<script>
+  $(document).ready(function () {
+    $('.tg-tab-btn').click(function () {
+      $('.tg-tab-btn').removeClass('active');
+      $(this).addClass('active');
+      $('.tg-panel').removeClass('active');
+      $('#tab-' + $(this).data('tab')).addClass('active');
+    });
+  });
+</script>
+  <section id="tileGuideSection">
+  <div class="container">
+
+    <!-- Header -->
+    <div class="tg-header">
+      <h2>The <span>Tile</span> Guide</h2>
+      <p>Your complete ready reference before buying — types, sizes, finishes & more</p>
+      <hr>
+    </div>
+
+    <!-- Tab Buttons -->
+    <div class="tg-tabs">
+      <button class="tg-tab-btn active" data-tab="types">🏺 Tile Types</button>
+      <button class="tg-tab-btn" data-tab="sizes">📐 Size Guide</button>
+      <button class="tg-tab-btn" data-tab="finishes">✨ Finishes</button>
+      <button class="tg-tab-btn" data-tab="rooms">🏠 Room Guide</button>
+      <button class="tg-tab-btn" data-tab="maintenance">🧹 Maintenance</button>
+    </div>
+
+
+    <!-- ════════ TAB 1: TILE TYPES ════════ -->
+    <div class="tg-panel active" id="tab-types">
+      <div class="row g-4">
+
+        <div class="col-12 col-md-6 col-lg-4">
+          <div class="tg-img-card">
+            <img src="/bathroom wall tiles img/carousal 2.jpeg" alt="Ceramic">
+            <div class="tg-img-overlay">
+              <span class="tg-badge">Most Popular</span>
+              <h5>Ceramic Tiles</h5>
+              <p>Made from fired clay. Affordable & easy to cut. Best for indoor walls, bedrooms & low-traffic areas.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 col-md-6 col-lg-4">
+          <div class="tg-img-card">
+            <img src="/bathroom wall tiles img/carousal 3.png" alt="Porcelain">
+            <div class="tg-img-overlay">
+              <span class="tg-badge">Premium</span>
+              <h5>Porcelain Tiles</h5>
+              <p>Denser than ceramic with very low water absorption. Perfect for bathrooms, kitchens & outdoor areas.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 col-md-6 col-lg-4">
+          <div class="tg-img-card">
+            <img src="/living room floor tiles/lrft1.jpeg" alt="Vitrified">
+            <div class="tg-img-overlay">
+              <span class="tg-badge">High Traffic</span>
+              <h5>Vitrified Tiles</h5>
+              <p>Extremely hard & non-porous. Ideal for high-traffic floors in living rooms & commercial spaces.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 col-md-6 col-lg-4">
+          <div class="tg-img-card">
+            <img src="/living room wall tiles img/wall 1.jpeg" alt="Marble">
+            <div class="tg-img-overlay">
+              <span class="tg-badge">Luxury</span>
+              <h5>Marble / Natural Stone</h5>
+              <p>Cut from natural stone — every tile is unique. Stunning look for living rooms & feature walls.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 col-md-6 col-lg-4">
+          <div class="tg-img-card">
+            <img src="/kitchen wall tiles img/kwt 7.jpeg" alt="Mosaic">
+            <div class="tg-img-overlay">
+              <span class="tg-badge">Decorative</span>
+              <h5>Mosaic Tiles</h5>
+              <p>Small tiles in patterns — glass, ceramic or stone. Great for feature walls, shower niches & backsplashes.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 col-md-6 col-lg-4">
+          <div class="tg-img-card">
+            <img src="/special tiles/germ free.jpeg" alt="Special">
+            <div class="tg-img-overlay">
+              <span class="tg-badge">Speciality</span>
+              <h5>Special Function Tiles</h5>
+              <p>Germ Free, Anti-Static, TAC Tactile & Cool Roof — engineered for hygiene, safety & heat resistance.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <div class="tg-tip">
+        <span class="tip-icon">💡</span>
+        <span><strong>Pro Tip:</strong> For bathrooms and kitchens, always choose <strong>porcelain or vitrified</strong> over ceramic — they absorb less water and last much longer in wet areas.</span>
+      </div>
+    </div>
+
+
+    <!-- ════════ TAB 2: SIZE GUIDE ════════ -->
+    <div class="tg-panel" id="tab-sizes">
+      <div class="row g-4">
+
+        <div class="col-12 col-sm-6 col-lg-3">
+          <div class="tg-size-card">
+            <div class="tg-size-visual" style="width:50px;height:50px;"></div>
+            <span class="tg-size-label">Up to 12"×12"</span>
+            <h5>Small</h5>
+            <p>Perfect for small bathrooms, shower walls & kitchen backsplashes. More grout lines = better grip in wet areas.</p>
+          </div>
+        </div>
+
+        <div class="col-12 col-sm-6 col-lg-3">
+          <div class="tg-size-card">
+            <div class="tg-size-visual" style="width:70px;height:70px;"></div>
+            <span class="tg-size-label">12"×24" or 18"×18"</span>
+            <h5>Medium</h5>
+            <p>Most versatile size. Works in bedrooms, kitchens & medium bathrooms. Easy to lay in any pattern.</p>
+          </div>
+        </div>
+
+        <div class="col-12 col-sm-6 col-lg-3">
+          <div class="tg-size-card">
+            <div class="tg-size-visual" style="width:95px;height:95px;"></div>
+            <span class="tg-size-label">24"×24" or 24"×48"</span>
+            <h5>Large</h5>
+            <p>Makes rooms look bigger & more open. Fewer grout lines = easier cleaning. Best for living rooms.</p>
+          </div>
+        </div>
+
+        <div class="col-12 col-sm-6 col-lg-3">
+          <div class="tg-size-card">
+            <div class="tg-size-visual" style="width:120px;height:120px;"></div>
+            <span class="tg-size-label">48"×48" and above</span>
+            <h5>Extra Large</h5>
+            <p>Seamless, luxurious look. Best for commercial spaces, lobbies & expansive living areas.</p>
+          </div>
+        </div>
+
+      </div>
+      <div class="tg-tip">
+        <span class="tip-icon">📐</span>
+        <span><strong>Rule of Thumb:</strong> Bigger tiles make small rooms feel <strong>larger</strong>. Smaller tiles give more texture and grip — great for wet or sloped floors.</span>
+      </div>
+    </div>
+
+
+    <!-- ════════ TAB 3: FINISHES ════════ -->
+    <div class="tg-panel" id="tab-finishes">
+      <div class="row g-4">
+
+        <div class="col-12 col-md-6 col-lg-4">
+          <div class="tg-img-card">
+            <img src="/living room floor tiles/lrft2.jpeg" alt="Glossy">
+            <div class="tg-img-overlay">
+              <span class="tg-badge">Living Room · Feature Walls</span>
+              <h5>✨ Glossy / Polished</h5>
+              <p>Highly reflective — bounces light, makes rooms look brighter & bigger. Best for walls & low-traffic floors.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 col-md-6 col-lg-4">
+          <div class="tg-img-card">
+            <img src="/bedroom floor tiles/bdft1.jpeg" alt="Matte">
+            <div class="tg-img-overlay">
+              <span class="tg-badge">Bedroom · Kitchen</span>
+              <h5>🪵 Matte</h5>
+              <p>Non-reflective, warm & earthy feel. Hides dirt & smudges better. Very popular in modern interiors.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 col-md-6 col-lg-4">
+          <div class="tg-img-card">
+            <img src="/bathroom floor tiles img/btrft1.jpeg" alt="Anti-Skid">
+            <div class="tg-img-overlay">
+              <span class="tg-badge">Bathroom · Outdoor</span>
+              <h5>🛁 Anti-Skid / Textured</h5>
+              <p>Rough surface for grip when wet. Essential for bathroom floors, outdoor areas & anywhere safety matters.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 col-md-6 col-lg-4">
+          <div class="tg-img-card">
+            <img src="/bedroom wall tiles img/bd 1.jpeg" alt="Satin">
+            <div class="tg-img-overlay">
+              <span class="tg-badge">Walls · Accent Areas</span>
+              <h5>🌟 Satin / Silk</h5>
+              <p>Between glossy & matte — subtle sheen without being too reflective. Elegant and very easy to clean.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 col-md-6 col-lg-4">
+          <div class="tg-img-card">
+            <img src="/special tiles/germ free.jpeg" alt="Germ Free">
+            <div class="tg-img-overlay">
+              <span class="tg-badge">Kitchen · Hospitals</span>
+              <h5>🏥 Anti-Bacterial</h5>
+              <p>Special coating that stops bacterial growth. Ideal for kitchens, hospitals & food prep areas.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 col-md-6 col-lg-4">
+          <div class="tg-img-card">
+            <img src="/special tiles/cool roof tiles.jpeg" alt="Cool Roof">
+            <div class="tg-img-overlay">
+              <span class="tg-badge">Terrace · Balcony</span>
+              <h5>☀️ Heat-Reflective</h5>
+              <p>Reflects sunlight & reduces heat absorption. Lowers indoor temperature by 3–5°C in hot climates.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+
+    <!-- ════════ TAB 4: ROOM GUIDE ════════ -->
+    <div class="tg-panel" id="tab-rooms">
+      <div class="tg-table-wrap">
+        <div class="table-responsive">
+          <table class="tg-table">
+            <thead>
+              <tr>
+                <th>Room</th>
+                <th>Recommended Type</th>
+                <th>Best Finish</th>
+                <th>Ideal Size</th>
+                <th>Waterproof</th>
+                <th>Anti-Skid</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>🚿 Bathroom Floor</td>
+                <td>Porcelain / Vitrified</td>
+                <td>Anti-Skid / Matte</td>
+                <td>12"×12" – 18"×18"</td>
+                <td class="tg-tick">✔ Yes</td>
+                <td class="tg-tick">✔ Yes</td>
+              </tr>
+              <tr>
+                <td>🚿 Bathroom Wall</td>
+                <td>Ceramic / Porcelain</td>
+                <td>Glossy / Satin</td>
+                <td>12"×24" – 24"×48"</td>
+                <td class="tg-tick">✔ Yes</td>
+                <td class="tg-cross">✘ No</td>
+              </tr>
+              <tr>
+                <td>🍳 Kitchen Floor</td>
+                <td>Vitrified / Porcelain</td>
+                <td>Matte / Anti-Skid</td>
+                <td>18"×18" – 24"×24"</td>
+                <td class="tg-tick">✔ Yes</td>
+                <td class="tg-tick">✔ Yes</td>
+              </tr>
+              <tr>
+                <td>🍳 Kitchen Wall</td>
+                <td>Ceramic / Germ Free</td>
+                <td>Glossy / Anti-Bacterial</td>
+                <td>12"×12" – 12"×24"</td>
+                <td class="tg-tick">✔ Yes</td>
+                <td class="tg-cross">✘ No</td>
+              </tr>
+              <tr>
+                <td>🛋️ Living Room</td>
+                <td>Vitrified / Marble</td>
+                <td>Polished / Glossy</td>
+                <td>24"×24" – 48"×48"</td>
+                <td class="tg-cross">✘ Optional</td>
+                <td class="tg-cross">✘ No</td>
+              </tr>
+              <tr>
+                <td>🛏️ Bedroom</td>
+                <td>Ceramic / Vitrified</td>
+                <td>Matte / Satin</td>
+                <td>18"×18" – 24"×24"</td>
+                <td class="tg-cross">✘ No</td>
+                <td class="tg-cross">✘ No</td>
+              </tr>
+              <tr>
+                <td>🌿 Outdoor / Patio</td>
+                <td>Porcelain / Vitrified</td>
+                <td>Anti-Skid / Textured</td>
+                <td>18"×18" – 24"×24"</td>
+                <td class="tg-tick">✔ Yes</td>
+                <td class="tg-tick">✔ Yes</td>
+              </tr>
+              <tr>
+                <td>🏢 Commercial</td>
+                <td>Vitrified / Anti-Static</td>
+                <td>Matte / Polished</td>
+                <td>24"×24" – 48"×48"</td>
+                <td class="tg-cross">✘ Optional</td>
+                <td class="tg-tick">✔ Yes</td>
+              </tr>
+              <tr>
+                <td>🏠 Terrace / Roof</td>
+                <td>Cool Roof Tiles</td>
+                <td>Heat-Reflective</td>
+                <td>24"×24"</td>
+                <td class="tg-tick">✔ Yes</td>
+                <td class="tg-tick">✔ Yes</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="tg-tip">
+        <span class="tip-icon">🏠</span>
+        <span><strong>Quick Rule:</strong> Wet areas always need <strong>waterproof + anti-skid</strong> tiles. Dry areas like bedrooms and living rooms — focus on <strong>look and feel</strong>.</span>
+      </div>
+    </div>
+
+
+    <!-- ════════ TAB 5: MAINTENANCE ════════ -->
+    <div class="tg-panel" id="tab-maintenance">
+      <div class="row g-4">
+
+        <div class="col-12 col-md-6 col-lg-4">
+          <div class="tg-step">
+            <div class="step-num">1</div>
+            <div class="step-body">
+              <h5>Daily Cleaning</h5>
+              <p>Sweep or vacuum to remove dust and grit. Damp mop with mild detergent. Avoid harsh scrubbing on polished tiles — it dulls the finish.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 col-md-6 col-lg-4">
+          <div class="tg-step">
+            <div class="step-num">2</div>
+            <div class="step-body">
+              <h5>Grout Care</h5>
+              <p>Clean grout lines with a soft brush and baking soda paste. Re-seal grout every 1–2 years in wet areas like bathrooms and kitchens.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 col-md-6 col-lg-4">
+          <div class="tg-step">
+            <div class="step-num">3</div>
+            <div class="step-body">
+              <h5>Marble & Natural Stone</h5>
+              <p>Seal every 6–12 months to prevent staining. Never use acidic cleaners like vinegar or lemon — they permanently etch the surface.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 col-md-6 col-lg-4">
+          <div class="tg-step">
+            <div class="step-num">4</div>
+            <div class="step-body">
+              <h5>What to Avoid</h5>
+              <p>No bleach on colored grout. No steel wool or abrasive pads. Don't drag heavy furniture on polished tiles — always use felt pads.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 col-md-6 col-lg-4">
+          <div class="tg-step">
+            <div class="step-num">5</div>
+            <div class="step-body">
+              <h5>Stain Removal</h5>
+              <p>Oil stains → dish soap + warm water. Rust → oxalic acid cleaner. Soap scum → diluted white vinegar works well on ceramic and porcelain.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 col-md-6 col-lg-4">
+          <div class="tg-step">
+            <div class="step-num">6</div>
+            <div class="step-body">
+              <h5>Tile Lifespan</h5>
+              <p>Ceramic: 10–20 yrs · Porcelain: 20–50 yrs · Vitrified: 25+ yrs · Natural Stone: 50–100 yrs with proper care and maintenance.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <div class="tg-tip">
+        <span class="tip-icon">🛠️</span>
+        <span><strong>Installation Tip:</strong> Always buy <strong>10–15% extra tiles</strong> beyond your room measurement to account for cuts, breakage & future replacements.</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+<!-- ── END STEP 2 ── -->
+
+
+<!-- ── STEP 3: SCRIPT ── paste near your other scripts before </body> ── -->
+<script>
+  $(document).ready(function () {
+    $('.tg-tab-btn').click(function () {
+      $('.tg-tab-btn').removeClass('active');
+      $(this).addClass('active');
+      $('.tg-panel').removeClass('active');
+      $('#tab-' + $(this).data('tab')).addClass('active');
+    });
+  });
+</script>
+<!-- ── END STEP 3 ── -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

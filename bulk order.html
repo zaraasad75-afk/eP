@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CERA — Bulk Orders</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+:root{
+--black:#0f0f0f;
+--dark:#181818;
+--white:#f6f6f6;
+--gold:#c9a96e;
+--border:rgba(255,255,255,0.08);
+}
+
+body{
+font-family:'DM Sans',sans-serif;
+background:var(--black);
+color:var(--white);
+line-height:1.6;
+}
+
+/* Header */
+
+.header{
+text-align:center;
+padding:80px 20px 60px;
+border-bottom:1px solid var(--border);
+}
+
+.header h1{
+font-family:'Cormorant Garamond',serif;
+font-size:56px;
+letter-spacing:6px;
+font-weight:400;
+}
+
+.header span{
+color:var(--gold);
+}
+
+.header p{
+margin-top:10px;
+color:#aaa;
+}
+
+/* Section */
+
+.bulk{
+max-width:1000px;
+margin:auto;
+padding:60px 30px;
+}
+
+.bulk h2{
+font-family:'Cormorant Garamond',serif;
+font-size:36px;
+color:var(--gold);
+margin-bottom:30px;
+text-align:center;
+}
+
+.bulk p{
+color:#ccc;
+margin-bottom:20px;
+text-align:justify;
+}
+
+/* Form */
+
+.form-box{
+background:var(--dark);
+padding:35px;
+border-radius:12px;
+border:1px solid var(--border);
+margin-top:40px;
+}
+
+.form-box h3{
+font-family:'Cormorant Garamond',serif;
+color:var(--gold);
+margin-bottom:20px;
+text-align:center;
+}
+
+form{
+display:flex;
+flex-direction:column;
+gap:15px;
+}
+
+input, select, textarea{
+padding:12px;
+border-radius:8px;
+border:1px solid var(--border);
+background:var(--black);
+color:white;
+}
+
+input:focus,
+select:focus,
+textarea:focus{
+outline:none;
+border-color:var(--gold);
+}
+
+button{
+padding:12px;
+border:none;
+border-radius:8px;
+background:var(--gold);
+color:black;
+font-weight:500;
+cursor:pointer;
+transition:0.3s;
+}
+
+button:hover{
+background:#b59150;
+}
+
+/* Footer */
+
+.footer{
+text-align:center;
+padding:30px;
+border-top:1px solid var(--border);
+color:#777;
+font-size:13px;
+}
+
+</style>
+</head>
+
+<body>
+
+<header class="header">
+<h1>CERA<span>.</span></h1>
+<p>Bulk Tile Orders for Large Projects</p>
+</header>
+
+<section class="bulk">
+
+<h2>Bulk Orders</h2>
+
+<p>
+CERA Tiles offers bulk ordering services for large-scale residential,
+commercial, and construction projects. Our bulk order service ensures
+customers receive premium quality tiles in large quantities at
+competitive prices.
+</p>
+
+<p>
+Whether you are an architect, contractor, or interior designer working
+on a major project, our team will help you select the right tiles,
+estimate quantities, and arrange delivery efficiently.
+</p>
+
+<div class="form-box">
+
+<h3>Request Bulk Order</h3>
+
+<form id="bulkForm" onsubmit="return validateBulk()">
+
+<input type="text" id="name" placeholder="Your Name">
+
+<input type="email" id="email" placeholder="Email Address">
+
+<input type="text" id="phone" placeholder="Phone Number">
+
+<select id="type">
+<option value="">Select Project Type</option>
+<option>Residential</option>
+<option>Commercial</option>
+<option>Construction</option>
+</select>
+
+<input type="number" id="quantity" placeholder="Estimated Tile Quantity (sq ft)">
+
+<textarea id="details" rows="4" placeholder="Project Details"></textarea>
+
+<button type="submit">Submit Bulk Request</button>
+
+</form>
+
+</div>
+
+</section>
+
+<footer class="footer">
+© 2026 CERA Tiles — All Rights Reserved
+</footer>
+
+<script>
+
+function validateBulk(){
+
+let name=document.getElementById("name").value.trim();
+let email=document.getElementById("email").value.trim();
+let phone=document.getElementById("phone").value.trim();
+let type=document.getElementById("type").value;
+let quantity=document.getElementById("quantity").value;
+
+if(name==""||email==""||phone==""||type==""||quantity==""){
+alert("Please fill all required fields.");
+return false;
+}
+
+let emailPattern=/^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
+
+if(!email.match(emailPattern)){
+alert("Enter a valid email.");
+return false;
+}
+
+let phonePattern=/^[0-9]{10,15}$/;
+
+if(!phone.match(phonePattern)){
+alert("Enter valid phone number.");
+return false;
+}
+
+alert("Bulk order request submitted successfully!");
+
+return true;
+
+}
+
+</script>
+
+</body>
+</html>

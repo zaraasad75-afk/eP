@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>CERA Footer</title>
+
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+
+<style>
+
+:root{
+  --gold:#c6a86e;
+}
+
+/* FOOTER */
+
+.footer{
+  background:#151412;
+  color:#888;
+  padding:60px 40px 30px;
+}
+
+/* GRID */
+
+.footer-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:40px;
+  border-bottom:1px solid #2a2825;
+  padding-bottom:40px;
+  margin-bottom:25px;
+}
+
+/* BRAND */
+
+.ft-brand .logo{
+  font-family:"Cormorant Garamond",serif;
+  font-size:26px;
+  letter-spacing:4px;
+  color:#fff;
+  margin-bottom:12px;
+}
+
+.ft-brand .logo span{
+  color:var(--gold);
+}
+
+.ft-brand p{
+  font-size:13px;
+  line-height:1.7;
+  margin-bottom:20px;
+}
+
+/* SOCIAL */
+
+.ft-social{
+  display:flex;
+  gap:10px;
+}
+
+.ft-social-btn{
+  width:36px;
+  height:36px;
+  background:#2a2825;
+  border-radius:6px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:#888;
+  text-decoration:none;
+  transition:0.3s;
+}
+
+.ft-social-btn:hover{
+  background:var(--gold);
+  color:#fff;
+}
+
+/* COLUMN */
+
+.ft-col h4{
+  color:#fff;
+  font-size:12px;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  margin-bottom:18px;
+}
+
+.ft-col ul{
+  list-style:none;
+  padding:0;
+}
+
+.ft-col ul li{
+  margin-bottom:10px;
+}
+
+.ft-col ul li a{
+  color:#888;
+  text-decoration:none;
+  font-size:13.5px;
+  transition:0.3s;
+}
+
+.ft-col ul li a:hover{
+  color:var(--gold);
+}
+
+/* FOOTER BOTTOM */
+
+.footer-bottom{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:15px;
+  font-size:12px;
+  color:#444;
+}
+
+.footer-bottom a{
+  color:#444;
+  text-decoration:none;
+}
+
+.footer-bottom a:hover{
+  color:#888;
+}
+
+/* ------------------ */
+/* RESPONSIVE DESIGN */
+/* ------------------ */
+
+/* Tablets */
+
+@media(max-width:992px){
+
+.footer-grid{
+grid-template-columns:repeat(2,1fr);
+gap:35px;
+}
+
+.footer{
+padding:50px 30px 25px;
+}
+
+}
+
+/* Mobile */
+
+@media(max-width:600px){
+
+.footer-grid{
+grid-template-columns:1fr;
+text-align:center;
+}
+
+.ft-social{
+justify-content:center;
+}
+
+.footer-bottom{
+flex-direction:column;
+text-align:center;
+}
+
+.footer{
+padding:40px 20px;
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<script src="/js/bootstrap.bundle.min.js"></script>
+
+<footer class="footer" id="contact">
+
+<div class="footer-grid">
+
+<div class="ft-brand">
+
+<div class="logo">CERA'S<span>.</span></div>
+
+<p>
+Premium ceramic tiles for homes and commercial spaces. Designed for
+every room, crafted with precision, delivered across Pakistan.
+</p>
+
+<div class="ft-social">
+
+<a href="https://www.facebook.com/" class="ft-social-btn">
+<svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor">
+<path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+</svg>
+</a>
+
+<a href="https://www.instagram.com/" class="ft-social-btn">
+<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+<rect width="20" height="20" x="2" y="2" rx="5"/>
+<path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+<line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/>
+</svg>
+</a>
+
+<a href="https://x.com/" class="ft-social-btn">
+<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+<path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"/>
+</svg>
+</a>
+
+</div>
+</div>
+
+<div class="ft-col">
+
+<h4>Products</h4>
+
+<ul>
+<li><a href="#wall">Wall Tiles</a></li>
+<li><a href="#floor">Floor Tiles</a></li>
+<li><a href="#special">Special Tiles</a></li>
+<li><a href="/CERA'S ENTIRE WEBSITE CATLOGUE.pdf">Download Catalogue</a></li>
+</ul>
+
+</div>
+
+<div class="ft-col">
+
+<h4>Resources</h4>
+
+<ul>
+<li><a href="/tile guid.html">Tile Guide</a></li>
+<li><a href="/tile calculator.html">Tile Calculator</a></li>
+<li><a href="/comparing tiles.html">Compare Tiles</a></li>
+<li><a href="/combo blogs.html">Expert Corner</a></li>
+<li><a href="#reviews">Customer Reviews</a></li>
+</ul>
+
+</div>
+
+<div class="ft-col">
+
+<h4>Visit Us</h4>
+
+<ul>
+<li>📍 Plot 14, Block 7, Clifton</li>
+<li>Karachi – 75600, Pakistan</li>
+<li><a href="tel:+923214567890">📞 +92 321 4567890</a></li>
+<li><a href="mailto:info@cerastiles.com">✉️ info@cerastiles.com</a></li>
+<li>🕐 Mon–Sat: 9AM – 6PM</li>
+</ul>
+
+</div>
+
+</div>
+
+<div class="footer-bottom">
+
+<span>© 2026 CERA Tiles · All Rights Reserved</span>
+
+<div style="display:flex;gap:20px;">
+<a href="/privacy policy.html">Privacy Policy</a>
+<a href="/terms of service.html">Terms of Service</a>
+<a href="/sitemap.html">Sitemap</a>
+</div>
+
+</div>
+
+</footer>
+
+</body>
+</html>

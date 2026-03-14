@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Responsive Contact Section</title>
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+  <style>
+    body{
+        background-color: #d6d6d6;
+    }
+    .contact-section {
+      padding: 40px 20px;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #272727;
+      border-radius: 5px;
+      font-size: 14px;
+      box-sizing: border-box;
+      transition: border-color 0.3s ease;
+      margin-bottom: 10px;
+    }
+
+    input:focus, textarea:focus {
+      border-color: #ffffff;
+      outline: none;
+    }
+
+    textarea {
+      height: 100px;
+      resize: none;
+    }
+
+    button {
+      width: 100%;
+      background-color: #000000;
+      color: white;
+      border: none;
+      padding: 12px;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #000000;
+    }
+
+    .map iframe {
+      width: 100%;
+      height: 100%;
+      min-height: 350px;
+      border-radius: 8px;
+    }
+  </style>
+</head>
+<body>
+<script src="/js/bootstrap.bundle.min.js"></script>
+
+<!-- About Section -->
+<section id="about+contact">
+  <div class="container">
+    <h1 class="text-center py-3" style="font-weight:400;">ABOUT US</h1>
+    <div class="row">
+    <div class="col-md-6 p-4 p-md-5 d-flex flex-column justify-content-center" style="background-color: #272727; color: white;">
+
+
+        <h2>Welcome to Cera's Tile</h2>
+        <p>
+          Where design meets durability. We specialize in creating elegant, high-quality tiles that bring beauty and strength to every space.
+          Our mission is simple: to transform homes and businesses with tiles that reflect timeless style and modern innovation. From classic patterns to contemporary designs, every piece is crafted with care and precision.
+          At Cera’s Tile, we believe your space deserves more than just flooring – it deserves a foundation for memories, comfort, and inspiration.
+          Whether you’re renovating, building, or simply refreshing your interiors, we’re here to help you find the perfect tile for your vision.
+        </p>
+      </div>
+      <div class="col-md-6 p-0">
+        <img src="/living room floor tiles//lrft3.jpeg" class="w-100 h-100" alt="Kitchen Image" style="object-fit: cover;">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Contact Section -->
+<section class="contact-section">
+  <div class="container">
+    <div class="row g-4">
+      
+      <!-- Contact Form -->
+      <div class="col-md-6">
+        <form action="" method="post" class="contact-form">
+          <h1 style="text-align: center; font-weight: 400;">Get In Touch</h1>
+          <input type="text" name="name" placeholder="Your Name" required>
+          <input type="number" name="number" placeholder="Your Phone" required>
+          <input type="email" name="email" placeholder="Your Email" required>
+          <textarea name="message" placeholder="Your Message"></textarea>
+          <button type="submit">Send Message</button>
+        </form>
+      </div>
+
+      <!-- Map -->
+      <div class="col-md-6">
+        <div class="map">
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3619.647908899802!2d67.05951117515251!3d24.875872177919256!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3eb33e93180d084d%3A0xbda5ea2c72ae6c24!2sTK%20Brothers%20Rabi%20Centre!5e0!3m2!1sen!2s!4v1767858393809!5m2!1sen!2s"
+            style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+</body>
+</html>
+
+
+

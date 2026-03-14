@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tiles Company</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial, Helvetica, sans-serif;
+}
+
+body{
+background:#f5f5f5;
+}
+
+/* HEADER */
+
+header{
+background:#222;
+color:white;
+padding:15px 50px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+}
+
+header h1{
+font-size:24px;
+}
+
+nav a{
+color:white;
+margin:0 15px;
+text-decoration:none;
+font-size:16px;
+}
+
+nav a:hover{
+color:#f39c12;
+}
+
+/* HOME */
+
+.hero{
+height:400px;
+background:url("https://images.unsplash.com/photo-1600585154340-be6161a56a0c") center/cover;
+display:flex;
+align-items:center;
+justify-content:center;
+color:white;
+text-align:center;
+}
+
+.hero h2{
+font-size:40px;
+background:rgba(0,0,0,0.6);
+padding:20px;
+}
+
+/* SECTIONS */
+
+section{
+padding:60px 80px;
+background:white;
+margin:20px;
+border-radius:10px;
+}
+
+section h2{
+margin-bottom:20px;
+color:#333;
+}
+
+/* PRODUCTS */
+
+.products{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+gap:20px;
+}
+
+.product{
+background:#fafafa;
+padding:20px;
+border-radius:8px;
+text-align:center;
+box-shadow:0 0 5px rgba(0,0,0,0.1);
+}
+
+.product img{
+width:100%;
+height:150px;
+object-fit:cover;
+border-radius:5px;
+}
+
+/* CONTACT */
+
+.contact-form input,
+.contact-form textarea{
+width:100%;
+padding:10px;
+margin:10px 0;
+border:1px solid #ccc;
+border-radius:5px;
+}
+
+.contact-form button{
+background:#f39c12;
+color:white;
+border:none;
+padding:12px 20px;
+cursor:pointer;
+border-radius:5px;
+}
+
+.contact-form button:hover{
+background:#d68910;
+}
+
+/* FOOTER */
+
+footer{
+background:#222;
+color:white;
+text-align:center;
+padding:20px;
+margin-top:20px;
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+<h1>Tiles Company</h1>
+<nav>
+<a href="#">Home</a>
+<a href="#about">About</a>
+<a href="#products">Products</a>
+<a href="#contact">Contact</a>
+</nav>
+</header>
+
+
+<div class="hero">
+<h2>High Quality Tiles For Your Home</h2>
+</div>
+
+
+<section id="about">
+<h2>About Us</h2>
+<p>
+We provide high-quality tiles for homes, offices, and commercial spaces. Our tiles are designed with modern styles and strong materials to ensure durability and beauty.
+</p>
+</section>
+
+
+<section id="products">
+<h2>Our Tiles</h2>
+
+<div class="products">
+
+<div class="product">
+<img src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6">
+<h3>Floor Tiles</h3>
+<p>Durable and stylish floor tiles for modern homes.</p>
+</div>
+
+<div class="product">
+<img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c">
+<h3>Wall Tiles</h3>
+<p>Beautiful wall tiles for kitchens and living rooms.</p>
+</div>
+
+<div class="product">
+<img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a">
+<h3>Bathroom Tiles</h3>
+<p>Water resistant and anti-slip tiles.</p>
+</div>
+
+<div class="product">
+<img src="https://images.unsplash.com/photo-1600566752355-35792bedcfea">
+<h3>Kitchen Tiles</h3>
+<p>Easy to clean and modern kitchen tiles.</p>
+</div>
+
+</div>
+
+</section>
+
+
+<section id="contact">
+
+<h2>Contact Us</h2>
+
+<form class="contact-form">
+
+<input type="text" placeholder="Your Name" required>
+
+<input type="email" placeholder="Your Email" required>
+
+<textarea rows="5" placeholder="Your Message"></textarea>
+
+<button type="submit">Send Message</button>
+
+</form>
+
+</section>
+
+
+<footer>
+
+<p>© 2026 Tiles Company | All Rights Reserved</p>
+
+<p>Phone: +92 XXX XXX XXXX | Email: info@tiles.com</p>
+
+</footer>
+
+</body>
+</html>
