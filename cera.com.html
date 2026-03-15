@@ -996,62 +996,327 @@
         transform: translateY(0);
       }
 
-      /* ── RESPONSIVE ── */
-      @media (max-width: 1100px) {
-        .spaces-row,
-        .designer-row {
-          grid-template-columns: repeat(3, 1fr);
-        }
-        .hero-banner {
-          grid-template-columns: 1fr;
-        }
-        .hero-img-side {
-          min-height: 260px;
-        }
-        .hero-text-side {
-          padding: 48px 40px;
-        }
-        .pros-banner {
-          grid-template-columns: 1fr;
-          margin: 0 20px 50px;
-        }
-        .pros-right {
-          min-height: 220px;
-        }
-      }
-      @media (max-width: 768px) {
-        .navbar {
-          padding: 0 20px;
-          grid-template-columns: auto 1fr;
-        }
-        .nav-cats {
-          padding: 0 20px;
-          overflow-x: auto;
-        }
-        .shop-by-space,
-        .collections,
-        .designer-section,
-        .special-section,
-        .reviews {
-          padding: 50px 20px;
-        }
-        .cols-3,
-        .sp-grid,
-        .rv-grid {
-          grid-template-columns: 1fr;
-        }
-        .cat-cta {
-          margin: 0 20px 50px;
-          padding: 36px 28px;
-          flex-direction: column;
-        }
-        .footer-grid {
-          grid-template-columns: 1fr;
-        }
-        .footer {
-          padding: 48px 20px 28px;
-        }
-      }
+    
+      /* ════════════════════════════════════════
+   RESPONSIVE — ALL SCREEN SIZES
+   ════════════════════════════════════════ */
+
+/* ── MOBILE HAMBURGER BUTTON (add this to navbar) ── */
+.nav-menu-btn {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  color: var(--black);
+  flex-direction: column;
+  gap: 5px;
+}
+.nav-menu-btn span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: var(--black);
+  transition: all 0.3s;
+}
+
+/* Mobile nav drawer */
+.mobile-nav {
+  display: none;
+  position: fixed;
+  top: 70px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #fff;
+  z-index: 999;
+  padding: 24px 28px;
+  overflow-y: auto;
+  flex-direction: column;
+  border-top: 1px solid #eaeaea;
+}
+.mobile-nav.open { display: flex; }
+.mobile-nav a {
+  text-decoration: none;
+  color: var(--black);
+  font-size: 17px;
+  font-weight: 500;
+  padding: 15px 0;
+  border-bottom: 1px solid #f0f0ee;
+  display: block;
+  transition: color 0.2s;
+}
+.mobile-nav a:hover { color: var(--gold); }
+
+/* Mobile search bar (full width below navbar) */
+.mobile-search-bar {
+  display: none;
+  padding: 10px 20px;
+  background: #fff;
+  border-bottom: 1px solid #eaeaea;
+}
+.mobile-search-bar .nav-search-wrap {
+  max-width: 100%;
+  width: 100%;
+}
+
+/* ── LARGE DESKTOP: 1400px+ ── */
+@media (min-width: 1400px) {
+  .navbar { padding: 0 80px; }
+  .shop-by-space,
+  .collections,
+  .designer-section,
+  .special-section,
+  .reviews { padding: 88px 80px; }
+  .pros-banner,
+  .cat-cta { margin-left: 80px; margin-right: 80px; }
+  .footer { padding: 72px 80px 40px; }
+}
+
+/* ── MEDIUM DESKTOP: 1101px - 1399px ── */
+@media (max-width: 1399px) and (min-width: 1101px) {
+  .rv-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* ── SMALL DESKTOP / LARGE TABLET: max 1100px ── */
+@media (max-width: 1100px) {
+  .spaces-row,
+  .designer-row { grid-template-columns: repeat(3, 1fr); }
+
+  .hero-banner { grid-template-columns: 1fr; }
+  .hero-img-side { min-height: 260px; }
+  .hero-text-side { padding: 48px 40px; }
+
+  .pros-banner {
+    grid-template-columns: 1fr;
+    margin: 0 28px 60px;
+  }
+  .pros-right { min-height: 240px; }
+  .pros-left { padding: 48px 44px; }
+  .pros-left h2 { font-size: 36px; }
+
+  .rv-grid { grid-template-columns: repeat(2, 1fr); }
+
+  .footer-grid { grid-template-columns: 1fr 1fr; gap: 36px; }
+}
+
+/* ── TABLET: max 900px ── */
+@media (max-width: 900px) {
+  .navbar { padding: 0 24px; gap: 20px; }
+  .nav-search-wrap { max-width: 300px; }
+
+  .shop-by-space,
+  .collections,
+  .designer-section,
+  .special-section,
+  .reviews { padding: 52px 24px; }
+
+  .spaces-row { grid-template-columns: repeat(3, 1fr); gap: 14px; }
+  .designer-row { grid-template-columns: repeat(3, 1fr); gap: 14px; }
+
+  .cols-3 { grid-template-columns: repeat(2, 1fr); }
+  .sp-grid { grid-template-columns: repeat(2, 1fr); }
+
+  .cat-cta {
+    margin: 0 24px 60px;
+    padding: 40px 36px;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .pros-banner { margin: 0 24px 56px; }
+
+  .footer { padding: 52px 24px 28px; }
+  .footer-grid { grid-template-columns: 1fr 1fr; gap: 28px; }
+}
+
+/* ── TABLET PORTRAIT: max 768px ── */
+@media (max-width: 768px) {
+  /* Navbar: hide search, show hamburger */
+  .navbar {
+    padding: 0 20px;
+    grid-template-columns: auto 1fr auto;
+    gap: 12px;
+    height: 64px;
+  }
+  .nav-search-wrap { display: none; }
+  .mobile-search-bar { display: block; }
+  .nav-right { gap: 12px; }
+  .nav-icon-link span { display: none; } /* icons only */
+  .nav-menu-btn { display: flex; }
+
+  /* Announcement bar */
+  .announce-bar {
+    font-size: 11px;
+    padding: 8px 40px 8px 16px;
+    gap: 4px;
+  }
+
+  /* Hero */
+  .hero-banner { grid-template-columns: 1fr; min-height: auto; }
+  .hero-img-side { min-height: 220px; }
+  .phones-overlay { padding: 0 20px; gap: 8px; }
+  .phone-sm { width: 100px; }
+  .phone-lg { width: 115px; }
+  .hero-text-side { padding: 36px 24px; }
+  .hero-text-side h1 { font-size: 30px; }
+  .hero-text-side p { font-size: 14px; margin-bottom: 24px; }
+  .btn-hero { padding: 12px 28px; font-size: 12px; }
+
+  /* Spaces */
+  .shop-by-space { padding: 44px 20px; }
+  .shop-by-space h2 { font-size: 22px; margin-bottom: 28px; }
+  .spaces-row { grid-template-columns: repeat(3, 1fr); gap: 12px; }
+  .space-item h4 { font-size: 12px; margin-top: 8px; }
+
+  /* Pros banner */
+  .pros-banner { grid-template-columns: 1fr; margin: 0 20px 48px; }
+  .pros-left { padding: 36px 28px; }
+  .pros-left h2 { font-size: 30px; margin-bottom: 24px; }
+  .pros-icons { gap: 18px; flex-wrap: wrap; }
+  .pros-icon-circle { width: 52px; height: 52px; font-size: 20px; }
+
+  /* Collections */
+  .collections { padding: 44px 20px; }
+  .sec-hdr h2 { font-size: 26px; }
+  .cols-3 { grid-template-columns: 1fr; gap: 16px; }
+  .col-img { height: 200px; }
+
+  /* Designer */
+  .designer-section { padding: 44px 20px; }
+  .designer-section h2 { font-size: 20px; margin-bottom: 28px; }
+  .designer-row { grid-template-columns: repeat(3, 1fr); gap: 12px; }
+  .des-item h4 { font-size: 12px; }
+
+  /* Special tiles */
+  .special-section { padding: 44px 20px; }
+  .sp-grid { grid-template-columns: repeat(2, 1fr); gap: 14px; }
+  .sp-card { height: 240px; }
+
+  /* CTA */
+  .cat-cta {
+    margin: 0 20px 48px;
+    padding: 32px 24px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 24px;
+  }
+  .cat-cta-text h2 { font-size: 26px; }
+  .cat-cta-text p { font-size: 14px; }
+  .cat-cta-btns { flex-direction: column; width: 100%; gap: 10px; }
+  .btn-gold,
+  .btn-outline-light { text-align: center; width: 100%; }
+
+  /* Reviews */
+  .reviews { padding: 44px 20px; }
+  .rv-grid { grid-template-columns: 1fr; gap: 14px; }
+  .reviews .sec-hdr h2 { font-size: 26px; }
+
+  /* Footer */
+  .footer { padding: 44px 20px 24px; }
+  .footer-grid { grid-template-columns: 1fr; gap: 28px; }
+  .footer-bottom {
+    flex-direction: column;
+    text-align: center;
+    gap: 10px;
+  }
+  .footer-bottom div { flex-wrap: wrap; justify-content: center; gap: 12px; }
+}
+
+/* ── MOBILE LARGE: max 600px ── */
+@media (max-width: 600px) {
+  .announce-bar { font-size: 10px; padding: 7px 36px 7px 12px; }
+
+  .navbar { height: 58px; padding: 0 16px; }
+  .nav-logo { font-size: 20px; letter-spacing: 3px; }
+  .mobile-nav { top: 58px; }
+
+  .hero-text-side { padding: 28px 18px; }
+  .hero-text-side h1 { font-size: 26px; }
+  .hero-text-side p { font-size: 13px; }
+
+  .spaces-row { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+
+  .pros-banner { margin: 0 16px 40px; }
+  .pros-left { padding: 28px 20px; }
+  .pros-left h2 { font-size: 26px; }
+  .pros-icons { gap: 14px; }
+  .pros-icon-circle { width: 46px; height: 46px; font-size: 18px; }
+  .pros-icon span { font-size: 11px; }
+  .btn-pros { font-size: 11px; padding: 11px 24px; }
+
+  .collections,
+  .designer-section,
+  .special-section,
+  .reviews,
+  .shop-by-space { padding: 36px 16px; }
+
+  .sec-hdr h2 { font-size: 22px; }
+  .sec-hdr { flex-wrap: wrap; gap: 8px; }
+
+  .designer-row { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+  .des-item h4 { font-size: 11px; }
+
+  .sp-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+  .sp-card { height: 200px; }
+  .sp-overlay h4 { font-size: 16px; }
+  .sp-overlay p { font-size: 11px; }
+
+  .cat-cta { margin: 0 16px 40px; padding: 28px 18px; }
+  .cat-cta-text h2 { font-size: 22px; }
+
+  .footer { padding: 36px 16px 20px; }
+  .footer-grid { gap: 22px; }
+}
+
+/* ── MOBILE MEDIUM: max 480px ── */
+@media (max-width: 480px) {
+  .navbar { height: 54px; padding: 0 14px; }
+  .nav-logo { font-size: 18px; letter-spacing: 2px; }
+  .mobile-nav { top: 54px; }
+
+  .hero-img-side { min-height: 180px; }
+  .phone-sm { width: 80px; }
+  .phone-lg { width: 94px; }
+  .hero-text-side h1 { font-size: 24px; }
+
+  .spaces-row { grid-template-columns: repeat(2, 1fr); gap: 8px; }
+  .space-item h4 { font-size: 11px; margin-top: 6px; }
+
+  .cols-3 { grid-template-columns: 1fr; }
+  .col-img { height: 180px; }
+  .col-footer h3 { font-size: 18px; }
+  .col-footer { padding: 16px 18px; }
+
+  .sp-card { height: 170px; }
+  .sp-overlay h4 { font-size: 15px; }
+
+  .rv-card { padding: 18px 16px; }
+  .rv-card p { font-size: 12.5px; }
+}
+
+/* ── MOBILE SMALL: max 375px ── */
+@media (max-width: 375px) {
+  .nav-logo { font-size: 16px; letter-spacing: 1.5px; }
+  .hero-text-side h1 { font-size: 22px; }
+  .hero-text-side p { font-size: 12px; }
+  .btn-hero { padding: 10px 22px; font-size: 11px; }
+
+  .spaces-row { grid-template-columns: repeat(2, 1fr); gap: 8px; }
+  .space-item h4 { font-size: 10px; }
+
+  .pros-left h2 { font-size: 22px; }
+  .pros-icons { gap: 10px; }
+  .pros-icon-circle { width: 40px; height: 40px; font-size: 16px; }
+
+  .sp-grid { grid-template-columns: 1fr; }
+  .sp-card { height: 220px; }
+
+  .designer-row { grid-template-columns: repeat(2, 1fr); gap: 8px; }
+
+  .cat-cta-text h2 { font-size: 20px; }
+  .cat-cta-text p { font-size: 12px; }
+}
     </style>
   </head>
   <body>
@@ -1165,7 +1430,38 @@
           Sign In
         </a>
       </div>
+      <!-- Hamburger button — add inside .navbar div -->
+<button class="nav-menu-btn" id="menuBtn" onclick="toggleMenu()">
+  <span></span><span></span><span></span>
+</button>
+
+
+
+
+
+
     </nav>
+     <!-- Mobile search bar OUTSIDE navbar ✅ -->
+    <div class="mobile-search-bar">
+      <div class="nav-search-wrap">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#999" stroke-width="2.2">
+          <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+        </svg>
+        <input type="text" placeholder="Search tiles..." autocomplete="off"/>
+      </div>
+    </div>
+
+    <!-- Mobile nav drawer OUTSIDE navbar ✅ -->
+    <div class="mobile-nav" id="mobileNav">
+      <a href="/wall tiles.html">Wall Tiles</a>
+      <a href="/floor tiles.html">Floor Tiles</a>
+      <a href="/special tiles.html">Special Tiles</a>
+      <a href="/about.html">About Us</a>
+      <a href="/REVIEW.HTML">Reviews</a>
+      <a href="/contact.html">Contact</a>
+      <a href="find a store.html">Find A Store</a>
+      <a href="sign in.html">Sign In</a>
+    </div>
 
     <!-- SECONDARY NAV -->
    
@@ -1174,20 +1470,20 @@
     <div class="hero-banner">
       <div class="hero-img-side">
         <img
-          src="/living room floor tiles/lrft3.jpeg"
+          src="living-room-floor-tiles/lrft3.jpeg"
           alt="Beautiful tiled room"
         />
         <div class="phones-overlay">
           <div class="phone-frame phone-sm">
             <div class="notch"></div>
             <img
-              src="/bathroom wall tiles img/carousal 2.jpeg"
+              src="bathroom-wall-tiles-img/carousal2.jpeg"
               alt="bathroom tile"
             />
           </div>
           <div class="phone-frame phone-lg">
             <div class="notch"></div>
-            <img src="/kitchen wall tiles img/kwt 5.jpeg" alt="kitchen tile" />
+            <img src="kitchen-wall-tiles-img/kwt5.jpeg" alt="kitchen tile" />
           </div>
         </div>
       </div>
@@ -1207,14 +1503,14 @@
       <div class="spaces-row">
         <div class="space-item">
           <div class="space-item-img">
-            <img src="/kitchen wall tiles img/kwt 5.jpeg" alt="Kitchen" />
+            <img src="kitchen-wall-tiles-img/kwt5.jpeg" alt="Kitchen" />
           </div>
           <h4>Kitchen</h4>
         </div>
         <div class="space-item">
           <div class="space-item-img">
             <img
-              src="/bathroom wall tiles img/carousal 2.jpeg"
+              src="bathroom-wall-tiles-img/carousal2.jpeg"
               alt="Bathroom"
             />
           </div>
@@ -1223,7 +1519,7 @@
         <div class="space-item">
           <div class="space-item-img">
             <img
-              src="/living room wall tiles img/wall 1.jpeg"
+              src="living-room-wall-tiles-img/wall1.jpeg"
               alt="Living Room"
             />
           </div>
@@ -1231,20 +1527,20 @@
         </div>
         <div class="space-item">
           <div class="space-item-img">
-            <img src="/bedroom wall tiles img/bd 1.jpeg" alt="Bedroom" />
+            <img src="bedroom-wall-tiles-img/bd1.jpeg" alt="Bedroom" />
           </div>
           <h4>Bedroom</h4>
         </div>
         <div class="space-item">
           <div class="space-item-img">
-            <img src="/outdoor wall tiles img/owt1.jpeg" alt="Outdoor" />
+            <img src="outdoor-wall-tiles-img/owt1.jpeg" alt="Outdoor" />
           </div>
           <h4>Outdoor</h4>
         </div>
         <div class="space-item">
           <div class="space-item-img">
             <img
-              src="/commercial space wall tiles img/c1.jpeg"
+              src="commercial-space-wall-tiles-img/c1.jpeg"
               alt="Commercial"
             />
           </div>
@@ -1252,6 +1548,17 @@
         </div>
       </div>
     </section>
+
+
+
+
+
+
+
+
+
+
+
 
     <!-- PROS GET MORE -->
     <div class="pros-banner fade-up" id="about">
@@ -1274,8 +1581,24 @@
         </div>
         <a href="/contact.html" class="btn-pros">Get In Touch</a>
       </div>
-      <div class="pros-right"></div>
+      <div class="pros-right">
+  <img src="commercial-space-wall-tiles-img/c1.jpeg" alt="CERA Tiles" 
+  style="width:100%; height:100%; object-fit:cover; display:block; opacity:0.85;">
+</div>
     </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     <!-- BROWSE COLLECTIONS -->
     <section class="collections fade-up" id="wall">
@@ -1287,7 +1610,7 @@
         <a class="col-card" href="/wall tiles.html">
           <div class="col-img">
             <img
-              src="/bathroom wall tiles img/carousal 3.png"
+              src="bathroom-wall-tiles-img/carousal3.png"
               alt="Wall Tiles"
             />
           </div>
@@ -1301,7 +1624,7 @@
         </a>
         <a class="col-card" href="/floor tiles.html">
           <div class="col-img">
-            <img src="/living room floor tiles/lrft1.jpeg" alt="Floor Tiles" />
+            <img src="living-room-floor-tiles/lrft1.jpeg" alt="Floor Tiles" />
           </div>
           <div class="col-footer">
             <div>
@@ -1313,7 +1636,7 @@
         </a>
         <a class="col-card" href="/special tiles.html">
           <div class="col-img">
-            <img src="/special tiles/germ free.jpeg" alt="Special Tiles" />
+            <img src="special-tiles/germ-free.jpeg" alt="Special Tiles" />
           </div>
           <div class="col-footer">
             <div>
@@ -1333,7 +1656,7 @@
         <div class="des-item">
           <div class="des-img">
             <img
-              src="/bathroom wall tiles img/carousal 2.jpeg"
+              src="bathroom-wall-tiles-img/carousal2.jpeg"
               alt="Classic White"
             />
           </div>
@@ -1341,32 +1664,32 @@
         </div>
         <div class="des-item">
           <div class="des-img">
-            <img src="/living room floor tiles/lrft1.jpeg" alt="Modern Grey" />
+            <img src="living-room-floor-tiles/lrft1.jpeg" alt="Modern Grey" />
           </div>
           <h4>Modern Grey</h4>
         </div>
         <div class="des-item">
           <div class="des-img">
-            <img src="/outdoor wall tiles img/owt1.jpeg" alt="Natural Stone" />
+            <img src="outdoor-wall-tiles-img/owt1.jpeg" alt="Natural Stone" />
           </div>
           <h4>Natural Stone</h4>
         </div>
         <div class="des-item">
           <div class="des-img">
-            <img src="/kitchen wall tiles img/kwt 5.jpeg" alt="Bold Colour" />
+            <img src="kitchen-wall-tiles-img/kwt5.jpeg" alt="Bold Colour" />
           </div>
           <h4>Bold Colour</h4>
         </div>
         <div class="des-item">
           <div class="des-img">
-            <img src="/bedroom wall tiles img/bd 1.jpeg" alt="Warm Tones" />
+            <img src="bedroom-wall-tiles-img/bd1.jpeg" alt="Warm Tones" />
           </div>
           <h4>Warm Tones</h4>
         </div>
         <div class="des-item">
           <div class="des-img">
             <img
-              src="/commercial space wall tiles img/c1.jpeg"
+              src="commercial-space-wall-tiles-img/c1.jpeg"
               alt="Cream Color"
             />
           </div>
@@ -1380,7 +1703,7 @@
       <div class="sec-hdr"><h2>Engineered Innovation</h2></div>
       <div class="sp-grid">
         <div class="sp-card">
-          <img src="/special tiles/germ free.jpeg" alt="Germ Free" />
+          <img src="special-tiles/germ-free.jpeg" alt="Germ Free" />
           <div class="sp-overlay">
             <span class="sp-badge">Hygiene</span>
             <h4>Germ Free</h4>
@@ -1388,7 +1711,7 @@
           </div>
         </div>
         <div class="sp-card">
-          <img src="/special tiles/tac tiles.jpeg" alt="TAC Tactile" />
+          <img src="special-tiles/tac-tiles.jpeg" alt="TAC Tactile" />
           <div class="sp-overlay">
             <span class="sp-badge">Accessibility</span>
             <h4>TAC Tactile</h4>
@@ -1396,7 +1719,7 @@
           </div>
         </div>
         <div class="sp-card">
-          <img src="/special tiles/anti static.jpeg" alt="Anti Static" />
+          <img src="special-tiles/anti-static.jpeg" alt="Anti Static" />
           <div class="sp-overlay">
             <span class="sp-badge">Industrial</span>
             <h4>Anti Static</h4>
@@ -1404,7 +1727,7 @@
           </div>
         </div>
         <div class="sp-card">
-          <img src="/special tiles/cool roof tiles.jpeg" alt="Cool Roof" />
+          <img src="special-tiles/cool-roof-tiles.jpeg" alt="Cool Roof" />
           <div class="sp-overlay">
             <span class="sp-badge">Energy Saving</span>
             <h4>Cool Roof</h4>
@@ -1597,9 +1920,9 @@
         <div class="ft-col">
           <h4>Products</h4>
           <ul>
-            <li><a href="#wall">Wall Tiles</a></li>
-            <li><a href="#floor">Floor Tiles</a></li>
-            <li><a href="#special">Special Tiles</a></li>
+            <li><a href="/wall tiles.html">Wall Tiles</a></li>
+            <li><a href="/floor tiles.html">Floor Tiles</a></li>
+            <li><a href="/special tiles.html">Special Tiles</a></li>
             <li>
               <a href="/CERA'S ENTIRE WEBSITE CATLOGUE.pdf"
                 >Download Catalogue</a
@@ -1614,7 +1937,7 @@
             <li><a href="/tile calculator.html">Tile Calculator</a></li>
             <li><a href="/comparing tiles.html">Compare Tiles</a></li>
             <li><a href="/combo blogs.html">Expert Corner</a></li>
-            <li><a href="#reviews">Customer Reviews</a></li>
+            <li><a href="/REVIEW.HTML">Customer Reviews</a></li>
           </ul>
         </div>
         <div class="ft-col">
@@ -2115,6 +2438,29 @@
         searchInput.value = term;
         runSearch(term);
       }
+
+
+
+
+
+
+
+
+
+
+
+      function toggleMenu() {
+  document.getElementById('mobileNav').classList.toggle('open');
+}
+// Close menu when a link is clicked
+document.querySelectorAll('.mobile-nav a').forEach(a => {
+  a.addEventListener('click', () => {
+    document.getElementById('mobileNav').classList.remove('open');
+  });
+});
     </script>
+
+
+    
   </body>
 </html>

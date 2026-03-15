@@ -25,7 +25,43 @@
         color: #111;
       }
 
-    
+      /* ── NAVBAR (matches homepage) ── */
+      .navbar {
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        background: #fff;
+        border-bottom: 1px solid #eaeaea;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 48px;
+        height: 70px;
+      }
+      .nav-logo {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 26px;
+        font-weight: 600;
+        letter-spacing: 4px;
+        color: #111;
+        text-decoration: none;
+      }
+      .nav-logo span {
+        color: var(--gold);
+      }
+      .nav-back {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        text-decoration: none;
+        color: var(--grey);
+        font-size: 13px;
+        font-weight: 500;
+        transition: color 0.2s;
+      }
+      .nav-back:hover {
+        color: #111;
+      }
 
       /* ── PAGE HEADER ── */
       .page-header {
@@ -221,6 +257,19 @@
 <body>
     
     <script src="/js/bootstrap.bundle.min.js"></script>
+    
+
+    <!-- PAGE HEADER -->
+    <div class="page-header">
+      <div>
+        <h1>Special Tiles</h1>
+        <p>l
+          1 style across 4 spaces — getm Free, anti static, cool roof, TAC tile,
+        
+        </p>
+      </div>
+      <div class="page-header-right">4 Collections</div>
+    </div>
 <!-- ============================================================
      SPECIAL TILES — Row 3: Single row (Germ Free visible, rest hidden)
      ============================================================ -->
@@ -235,7 +284,7 @@
       <div class="col-lg-3 col-md-6 mb-4">
         <div class="card cera-card">
           <div class="cera-image-wrapper">
-            <img src="/special tiles/germ free.jpeg" class="card-img-top" alt="Germ Free Tiles">
+            <img src="special-tiles/germ-free.jpeg" class="card-img-top" alt="Germ Free Tiles">
             <div class="cera-card-overlay">
               <p class="description" style="color:#fff;">
                 Anti-bacterial and anti-viral tiles — a selected range for kitchens and countertops.
@@ -252,7 +301,7 @@
       <div class="col-lg-3 col-md-6 mb-4 extra-special" style="display:none;">
         <div class="card cera-card">
           <div class="cera-image-wrapper">
-            <img src="/special tiles/tac tiles.jpeg" class="card-img-top" alt="TAC Tiles">
+            <img src="special-tiles/tac-tiles.jpeg" class="card-img-top" alt="TAC Tiles">
             <div class="cera-card-overlay">
               <p class="description" style="color:#fff;">
                 Non-fade, non-slip ground surface indicators assisting visually challenged people.
@@ -269,7 +318,7 @@
       <div class="col-lg-3 col-md-6 mb-4 extra-special" style="display:none;">
         <div class="card cera-card">
           <div class="cera-image-wrapper">
-            <img src="/special tiles/anti static.jpeg" class="card-img-top" alt="Anti Static Tiles">
+            <img src="special-tiles/anti-static.jpeg" class="card-img-top" alt="Anti Static Tiles">
             <div class="cera-card-overlay">
               <p class="description" style="color:#fff;">
                 Industrial tiling solution for areas sensitive to static electricity.
@@ -286,7 +335,7 @@
       <div class="col-lg-3 col-md-6 mb-4 extra-special" style="display:none;">
         <div class="card cera-card">
           <div class="cera-image-wrapper">
-            <img src="/special tiles/cool roof tiles.jpeg" class="card-img-top" alt="Cool Roof Tiles">
+            <img src="special-tiles/cool-roof-tiles.jpeg" class="card-img-top" alt="Cool Roof Tiles">
             <div class="cera-card-overlay">
               <p class="description" style="color:#fff;">
                 Keeps harsh sun rays off your building. Ideal for terraces and balconies.
