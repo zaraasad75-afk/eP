@@ -221,9 +221,12 @@
         letter-spacing: 0.5px;
       }
       /* Hidden cards inside a column collapse/expand */
-      .tile-col .extra-cards {
-        display: none;
-      }
+    .extra-cards {
+    display: none;
+}
+.extra-cards.open {
+    display: block;
+}
       .view-more-btn {
         background-color: rgba(255, 255, 255, 0.15);
         color: #fff;
@@ -258,7 +261,7 @@
     <script src="/js/bootstrap.bundle.min.js"></script>
       <!-- NAVBAR -->
     <nav class="navbar">
-      <a href="/cera.com.html" class="nav-logo">CERA<span>.</span></a>
+      <a href="/cera.com.html" class="nav-logo">CERA'S</a>
       <a href="/cera.com.html" class="nav-back">
         <svg
           width="14"
@@ -971,6 +974,17 @@
         </div>
       </div>
     </section>
+     <!-- // View More toggle — no Bootstrap needed -->
+     <script>
+      document.querySelectorAll(".view-more-btn").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const target = document.getElementById(btn.dataset.target);
+          const isOpen = target.classList.toggle("open");
+          btn.classList.toggle("expanded", isOpen);
+          btn.childNodes[0].textContent = isOpen ? "View Less " : "View More ";
+        });
+      });
+    </script>
     <!-- FLOOR TILES END -->
 
   </body>
