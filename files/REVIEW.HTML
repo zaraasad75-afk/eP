@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CERA - Customer Reviews</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: #3a3a3a;
+    min-height: 100vh;
+    font-family: 'Segoe UI', sans-serif;
+    padding: 50px 30px;
+  }
+
+  .reviews-section-title {
+    text-align: center;
+    color: #fff;
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    letter-spacing: 0.5px;
+  }
+
+  .reviews-section-subtitle {
+    text-align: center;
+    color: #aaa;
+    font-size: 14px;
+    margin-bottom: 40px;
+  }
+
+  .reviews-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    max-width: 1300px;
+    margin: 0 auto;
+  }
+
+  .review-card {
+    background: #2e2e2e;
+    border: 1px solid #555;
+    border-radius: 12px;
+    padding: 20px 22px;
+    color: #e0e0e0;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.4);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .review-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 28px rgba(0,0,0,0.5);
+  }
+
+  .review-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+  }
+
+  .avatar {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 15px;
+    color: #fff;
+    flex-shrink: 0;
+  }
+
+  .reviewer-info { display: flex; flex-direction: column; }
+  .reviewer-name { font-weight: 600; font-size: 14px; color: #f0f0f0; }
+  .review-date { font-size: 11px; color: #888; margin-top: 2px; }
+
+  .stars {
+    color: #f5a623;
+    font-size: 14px;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+  }
+
+  .stars.four::after { content: '★★★★☆'; }
+  .stars.five::after { content: '★★★★★'; }
+
+  .review-text {
+    font-size: 13px;
+    line-height: 1.65;
+    color: #c5c5c5;
+  }
+
+  .review-footer {
+    margin-top: 14px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11px;
+    color: #777;
+  }
+
+  .verified-badge {
+    background: #1a4a2e;
+    color: #5dbb7a;
+    font-size: 10px;
+    padding: 2px 7px;
+    border-radius: 20px;
+    font-weight: 600;
+  }
+
+  .helpful-btn {
+    margin-left: auto;
+    background: none;
+    border: 1px solid #555;
+    color: #aaa;
+    font-size: 11px;
+    padding: 3px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .helpful-btn:hover { border-color: #888; color: #ddd; }
+
+  .tile-tag {
+    display: inline-block;
+    font-size: 10px;
+    background: #3a3a5c;
+    color: #9999dd;
+    padding: 2px 8px;
+    border-radius: 20px;
+    margin-bottom: 8px;
+    font-weight: 600;
+  }
+
+  @media (max-width: 1024px) {
+    .reviews-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 600px) {
+    .reviews-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<h2 class="reviews-section-title">What Our Customers Say</h2>
+<p class="reviews-section-subtitle">Real reviews from verified CERA tile buyers</p>
+
+<div class="reviews-grid">
+
+  <!-- Review 1 -->
+  <div class="review-card">
+    <div class="review-header">
+      <div class="avatar" style="background: linear-gradient(135deg, #6c8ebf, #a8c8a0);">SR</div>
+      <div class="reviewer-info">
+        <span class="reviewer-name">Sarah R.</span>
+        <span class="review-date">February 18, 2026</span>
+      </div>
+    </div>
+    <span class="tile-tag">Germ Free</span>
+    <div class="stars five"></div>
+    <div class="review-text">Absolutely love these tiles! The Germ Free finish is exactly what I needed for my bathroom. Easy to clean and still looks brand new after 3 months.</div>
+    <div class="review-footer">
+      <span class="verified-badge">✓ Verified</span>
+      <button class="helpful-btn">👍 Helpful</button>
+    </div>
+  </div>
+
+  <!-- Review 2 -->
+  <div class="review-card">
+    <div class="review-header">
+      <div class="avatar" style="background: linear-gradient(135deg, #bf6c6c, #e0a080);">AK</div>
+      <div class="reviewer-info">
+        <span class="reviewer-name">Arjun K.</span>
+        <span class="review-date">January 30, 2026</span>
+      </div>
+    </div>
+    <span class="tile-tag">Marble Luxury</span>
+    <div class="stars five"></div>
+    <div class="review-text">The marble-effect tiles in my living room have completely transformed the space. Guests always compliment them. Premium quality at a fair price!</div>
+    <div class="review-footer">
+      <span class="verified-badge">✓ Verified</span>
+      <button class="helpful-btn">👍 Helpful</button>
+    </div>
+  </div>
+
+  <!-- Review 3 -->
+  <div class="review-card">
+    <div class="review-header">
+      <div class="avatar" style="background: linear-gradient(135deg, #7a5cbf, #c0a0e0);">PM</div>
+      <div class="reviewer-info">
+        <span class="reviewer-name">Priya M.</span>
+        <span class="review-date">January 12, 2026</span>
+      </div>
+    </div>
+    <span class="tile-tag">Kitchen Wall</span>
+    <div class="stars four"></div>
+    <div class="review-text">Ordered the green subway tiles for my kitchen backsplash — stunning! Installation was smooth and the grout held perfectly. Would definitely recommend.</div>
+    <div class="review-footer">
+      <span class="verified-badge">✓ Verified</span>
+      <button class="helpful-btn">👍 Helpful</button>
+    </div>
+  </div>
+
+  <!-- Review 4 -->
+  <div class="review-card">
+    <div class="review-header">
+      <div class="avatar" style="background: linear-gradient(135deg, #5cbf8e, #80d4b0);">RH</div>
+      <div class="reviewer-info">
+        <span class="reviewer-name">Rahul H.</span>
+        <span class="review-date">December 22, 2025</span>
+      </div>
+    </div>
+    <span class="tile-tag">Cool Roof</span>
+    <div class="stars five"></div>
+    <div class="review-text">Installed the Cool Roof tiles on my terrace last summer. The difference in room temperature is noticeable — easily 3–4°C cooler. Worth every rupee!</div>
+    <div class="review-footer">
+      <span class="verified-badge">✓ Verified</span>
+      <button class="helpful-btn">👍 Helpful</button>
+    </div>
+  </div>
+
+  <!-- Review 5 -->
+  <div class="review-card">
+    <div class="review-header">
+      <div class="avatar" style="background: linear-gradient(135deg, #bf9e5c, #e0c880);">NF</div>
+      <div class="reviewer-info">
+        <span class="reviewer-name">Nadia F.</span>
+        <span class="review-date">December 5, 2025</span>
+      </div>
+    </div>
+    <span class="tile-tag">Outdoor Floor</span>
+    <div class="stars five"></div>
+    <div class="review-text">Used the outdoor floor tiles for my garden patio. They've survived monsoon season without any cracking or fading. Extremely durable and still look elegant.</div>
+    <div class="review-footer">
+      <span class="verified-badge">✓ Verified</span>
+      <button class="helpful-btn">👍 Helpful</button>
+    </div>
+  </div>
+
+  <!-- Review 6 -->
+  <div class="review-card">
+    <div class="review-header">
+      <div class="avatar" style="background: linear-gradient(135deg, #5c9ebf, #80c8e0);">VS</div>
+      <div class="reviewer-info">
+        <span class="reviewer-name">Vikram S.</span>
+        <span class="review-date">November 18, 2025</span>
+      </div>
+    </div>
+    <span class="tile-tag">Anti Static</span>
+    <div class="stars five"></div>
+    <div class="review-text">We installed the Anti Static tiles in our server room. Zero static issues ever since. The finish also looks very professional. Great product for commercial use.</div>
+    <div class="review-footer">
+      <span class="verified-badge">✓ Verified</span>
+      <button class="helpful-btn">👍 Helpful</button>
+    </div>
+  </div>
+
+  <!-- Review 7 -->
+  <div class="review-card">
+    <div class="review-header">
+      <div class="avatar" style="background: linear-gradient(135deg, #bf5c8e, #e080b0);">LQ</div>
+      <div class="reviewer-info">
+        <span class="reviewer-name">Layla Q.</span>
+        <span class="review-date">November 2, 2025</span>
+      </div>
+    </div>
+    <span class="tile-tag">Bedroom Wall</span>
+    <div class="stars four"></div>
+    <div class="review-text">The stone-look tiles in my bedroom give such a calm, luxurious vibe. Delivery was on time and the packaging ensured zero breakage. Very happy with my purchase.</div>
+    <div class="review-footer">
+      <span class="verified-badge">✓ Verified</span>
+      <button class="helpful-btn">👍 Helpful</button>
+    </div>
+  </div>
+
+  <!-- Review 8 -->
+  <div class="review-card">
+    <div class="review-header">
+      <div class="avatar" style="background: linear-gradient(135deg, #6cbf6c, #a0e0a0);">DT</div>
+      <div class="reviewer-info">
+        <span class="reviewer-name">Dev T.</span>
+        <span class="review-date">October 14, 2025</span>
+      </div>
+    </div>
+    <span class="tile-tag">TAC Tactile</span>
+    <div class="stars five"></div>
+    <div class="review-text">Installed TAC tiles at our hospital corridor. The non-slip finish and accessibility design is exactly what we needed. Very professional and durable product.</div>
+    <div class="review-footer">
+      <span class="verified-badge">✓ Verified</span>
+      <button class="helpful-btn">👍 Helpful</button>
+    </div>
+  </div>
+
+</div><!-- /reviews-grid -->
+
+</body>
+</html>

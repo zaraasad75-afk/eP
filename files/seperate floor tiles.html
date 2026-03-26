@@ -1,0 +1,975 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <style>
+         *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      :root {
+        --gold: #c9a96e;
+        --black: #111;
+        --white: #fff;
+        --grey: #6b6b6b;
+      }
+      body {
+        font-family: "DM Sans", sans-serif;
+        background: #fff;
+        color: #111;
+      }
+
+      /* ── NAVBAR (matches homepage) ── */
+      .navbar {
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        background: #fff;
+        border-bottom: 1px solid #eaeaea;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 48px;
+        height: 70px;
+      }
+      .nav-logo {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 26px;
+        font-weight: 600;
+        letter-spacing: 4px;
+        color: #111;
+        text-decoration: none;
+      }
+      .nav-logo span {
+        color: var(--gold);
+      }
+      .nav-back {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        text-decoration: none;
+        color: var(--grey);
+        font-size: 13px;
+        font-weight: 500;
+        transition: color 0.2s;
+      }
+      .nav-back:hover {
+        color: #111;
+      }
+
+      /* ── PAGE HEADER ── */
+      .page-header {
+        background: #382c2c;
+        padding: 56px 48px;
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+      }
+      .page-header h1 {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 52px;
+        font-weight: 300;
+        color: #fff;
+        letter-spacing: 0.5px;
+      }
+      .page-header p {
+        color: rgba(255, 255, 255, 0.55);
+        font-size: 14px;
+        margin-top: 8px;
+      }
+      .page-header-right {
+        color: rgba(255, 255, 255, 0.4);
+        font-size: 13px;
+      }
+      /* ---- Card styles ---- */
+      .cera-card {
+        position: relative;
+        overflow: hidden;
+        border-radius: 20px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        transition:
+          transform 0.3s ease,
+          box-shadow 0.3s ease;
+      }
+      .cera-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+      }
+      .cera-image-wrapper {
+        position: relative;
+        width: 100%;
+        height: 280px;
+        overflow: hidden;
+        border-radius: 20px;
+      }
+      .cera-image-wrapper img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        transition: transform 0.4s ease;
+      }
+      .cera-card:hover .cera-image-wrapper img {
+        transform: scale(1.05);
+      }
+      .cera-card-overlay {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 0;
+        background: linear-gradient(to top, rgba(0, 0, 0, 0.9), transparent);
+        color: #fff;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        transition: height 0.4s ease;
+        overflow: hidden;
+        border-radius: 0 0 20px 20px;
+      }
+      .cera-image-wrapper:hover .cera-card-overlay {
+        height: 50%;
+      }
+      .cera-card-overlay p {
+        margin: 5px 0;
+        font-size: 14px;
+        color: #2b2b2b;
+        text-align: center;
+        padding: 0 10px;
+      }
+      .cera-card-overlay .price {
+        font-size: 18px;
+        font-weight: bold;
+        color: #ffd700;
+        margin-bottom: 10px;
+      }
+      .cera-card-overlay .description {
+        font-size: 12px;
+        color: #ddd;
+        margin-bottom: 8px;
+        display: none;
+      }
+      .cera-image-wrapper:hover .cera-card-overlay .description {
+        display: block;
+      }
+
+      .cera-btn {
+        border: none;
+        padding: 8px 20px;
+        border-radius: 8px;
+        font-weight: bold;
+        cursor: pointer;
+        margin: 5px;
+        transition: all 0.3s ease;
+        text-decoration: none;
+        display: inline-block;
+        text-align: center;
+        background-color: #5b5b5b;
+        color: white;
+      }
+      .cera-btn-details {
+        background-color: #ffffff;
+        color: #000000;
+      }
+      .cera-btn-details:hover {
+        background-color: #252424;
+        color: #fff;
+        transform: scale(1.05);
+      }
+      .cera-card-body {
+        padding: 15px;
+        background-color: #fff;
+        text-align: center;
+      }
+      .cera-card-body h5 {
+        font-size: 18px;
+        font-weight: bold;
+        color: #333;
+        margin-bottom: 5px;
+      }
+
+      /* ---- NEW: Shared section + column layout ---- */
+      .tiles-mega-section {
+        padding: 60px 0;
+        background-color: #5b5b5b;
+      }
+      .tiles-mega-section h2.section-title {
+        color: #fff;
+        font-size: 2rem;
+        font-weight: bold;
+        margin-bottom: 30px;
+        padding-bottom: 10px;
+        border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+      }
+      /* Each category column */
+      .tile-col {
+        padding: 0 12px;
+      }
+      .tile-col h4 {
+        color: #fff;
+        font-size: 1.1rem;
+        font-weight: 700;
+        margin-bottom: 15px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+      /* Hidden cards inside a column collapse/expand */
+    .extra-cards {
+    display: none;
+}
+.extra-cards.open {
+    display: block;
+}
+      .view-more-btn {
+        background-color: rgba(255, 255, 255, 0.15);
+        color: #fff;
+        border: 1px solid rgba(255, 255, 255, 0.4);
+        padding: 6px 18px;
+        border-radius: 8px;
+        font-weight: bold;
+        cursor: pointer;
+        margin-top: 12px;
+        transition: all 0.3s ease;
+        font-size: 13px;
+      }
+      .view-more-btn:hover {
+        background-color: rgba(255, 255, 255, 0.3);
+      }
+      /* divider between row groups */
+      .tiles-row-group {
+        margin-bottom: 50px;
+      }
+
+      @media (max-width: 768px) {
+        .cera-image-wrapper {
+          height: 200px;
+        }
+        .cera-image-wrapper:hover .cera-card-overlay {
+          height: 60%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    
+
+    <!-- PAGE HEADER -->
+    <div class="page-header">
+      <div>
+        <h1>Floor Tiles</h1>
+        <p>l
+          24 styles across 6 spaces — bathroom, kitchen, outdoor, living room,
+          bedroom &amp; commercial
+        </p>
+      </div>
+      <div class="page-header-right">24 Collections</div>
+    </div>
+
+
+    <!-- ============================================================
+     FLOOR TILES — Row 1: Bathroom | Kitchen | Outdoor
+     ============================================================ -->
+    <section
+      id="floortilesSection"
+      class="tiles-mega-section"
+      style="background-color: #4a4a4a"
+    >
+      <div class="container-fluid px-4">
+        <h2 class="section-title">Floor Tiles</h2>
+
+        <div class="tiles-row-group">
+          <div class="row">
+            <!-- BATHROOM FLOOR TILES -->
+            <div class="col-lg-4 col-md-6 mb-4 tile-col">
+              <h4>Bathroom</h4>
+              <div class="mb-3">
+                <div class="card cera-card">
+                  <div class="cera-image-wrapper">
+                    <img
+                      src="images/bathroom-floor-tiles-img/btrft1.jpeg"
+                      alt="Elegant Space"
+                    />
+                    <div class="cera-card-overlay">
+                      <p class="description">
+                        Cool-toned grey floor tiles — seamless, sophisticated
+                        modern aesthetic.
+                      </p>
+                      <p class="price">From Rs. 2,500/sq.ft</p>
+                      <div>
+                        <a
+                          href="website-linked-doc/Aqua Stone.docx"
+                          class="cera-btn cera-btn-details"
+                          >Details</a
+                        >
+                      </div>
+                    </div>
+                  </div>
+                  <div class="cera-card-body"><h5>Aqua Stone</h5></div>
+                </div>
+              </div>
+              <div class="extra-cards" id="extra-bathroomft">
+                <div class="mb-3">
+                  <div class="card cera-card">
+                    <div class="cera-image-wrapper">
+                      <img
+                        src="images/bathroom-floor-tiles-img/btrft2.jpeg"
+                        alt="Modern"
+                      />
+                      <div class="cera-card-overlay">
+                        <p class="description">
+                          Geometric grey patterns with subtle shading.
+                        </p>
+                        <p class="price">From Rs. 3,200/sq.ft</p>
+                        <div>
+                          <a
+                            href="website-linked-doc/Modern Style.docx"
+                            class="cera-btn cera-btn-details"
+                            >Details</a
+                          >
+                        </div>
+                      </div>
+                    </div>
+                    <div class="cera-card-body">
+                      <h5>Modern Style</h5>
+                    </div>
+                  </div>
+                </div>
+                <div class="mb-3">
+                  <div class="card cera-card">
+                    <div class="cera-image-wrapper">
+                      <img
+                        src="images/bathroom-floor-tiles-img/btrft3.jpeg"
+                        alt="Urban"
+                      />
+                      <div class="cera-card-overlay">
+                        <p class="description">
+                          Sophisticated grey tiles with subtle natural
+                          variation.
+                        </p>
+                        <p class="price">From Rs. 2,800/sq.ft</p>
+                        <div>
+                          <a
+                            href="website-linked-doc/Urban Tiling.docx"
+                            class="cera-btn cera-btn-details"
+                            >Details</a
+                          >
+                        </div>
+                      </div>
+                    </div>
+                    <div class="cera-card-body">
+                      <h5>Urban Tiling</h5>
+                    </div>
+                  </div>
+                </div>
+                <div class="mb-3">
+                  <div class="card cera-card">
+                    <div class="cera-image-wrapper">
+                      <img
+                        src="images/bathroom-floor-tiles-img/btrft4.jpeg"
+                        alt="Sleek"
+                      />
+                      <div class="cera-card-overlay">
+                        <p class="description">
+                          Refined tiles unify the contemporary bathroom space.
+                        </p>
+                        <p class="price">From Rs. 3,500/sq.ft</p>
+                        <div>
+                          <a
+                            href="website-linked-doc/Sleek Surface.docx"
+                            class="cera-btn cera-btn-details"
+                            >Details</a
+                          >
+                        </div>
+                      </div>
+                    </div>
+                    <div class="cera-card-body">
+                      <h5>Sleek Surfaces</h5>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <button class="view-more-btn" data-target="extra-bathroomft">
+                View More
+              </button>
+            </div>
+
+            <!-- KITCHEN FLOOR TILES -->
+            <div class="col-lg-4 col-md-6 mb-4 tile-col">
+              <h4>Kitchen</h4>
+              <div class="mb-3">
+                <div class="card cera-card">
+                  <div class="cera-image-wrapper">
+                    <img
+                      src="images/kitchen-floor-tiles-img/kft1.jpeg"
+                      alt="Elegant Space"
+                    />
+                    <div class="cera-card-overlay">
+                      <p class="description">
+                        Cool-toned grey floor tiles — seamless, sophisticated
+                        modern aesthetic.
+                      </p>
+                      <p class="price">From Rs. 2,500/sq.ft</p>
+                      <div>
+                        <a
+                          href="website-linked-doc/Marble Drift.docx"
+                          class="cera-btn cera-btn-details"
+                          >Details</a
+                        >
+                      </div>
+                    </div>
+                  </div>
+                  <div class="cera-card-body"><h5>Marble Drift</h5></div>
+                </div>
+              </div>
+              <div class="extra-cards" id="extra-kitchenft">
+                <div class="mb-3">
+                  <div class="card cera-card">
+                    <div class="cera-image-wrapper">
+                      <img
+                        src="images/kitchen-floor-tiles-img/kft2.jpeg"
+                        alt="Modern"
+                      />
+                      <div class="cera-card-overlay">
+                        <p class="description">
+                          Geometric grey patterns with subtle shading create a
+                          striking 3D illusion.
+                        </p>
+                        <p class="price">From Rs. 3,200/sq.ft</p>
+                        <div>
+                          <a href="website-linked-doc/Modern Style.docx" class="cera-btn cera-btn-details"
+                            >Details</a
+                          >
+                        </div>
+                      </div>
+                    </div>
+                    <div class="cera-card-body"><h5>Modern Style</h5></div>
+                  </div>
+                </div>
+                <div class="mb-3">
+                  <div class="card cera-card">
+                    <div class="cera-image-wrapper">
+                      <img
+                        src="images/kitchen-floor-tiles-img/kft3.jpeg"
+                        alt="Urban"
+                      />
+                      <div class="cera-card-overlay">
+                        <p class="description">
+                          Sophisticated grey tiles with subtle natural
+                          variation.
+                        </p>
+                        <p class="price">From Rs. 2,800/sq.ft</p>
+                        <div>
+                          <a href="images/Calm Stone.docx" class="cera-btn cera-btn-details"
+                            >Details</a
+                          >
+                        </div>
+                      </div>
+                    </div>
+                    <div class="cera-card-body"><h5>Urban Tiling</h5></div>
+                  </div>
+                </div>
+                <div class="mb-3">
+                  <div class="card cera-card">
+                    <div class="cera-image-wrapper">
+                      <img
+                        src="images/kitchen-floor-tiles-img/kft4.jpeg"
+                        alt="Sleek"
+                      />
+                      <div class="cera-card-overlay">
+                        <p class="description">
+                          Refined tiles unify the contemporary kitchen space.
+                        </p>
+                        <p class="price">From Rs. 3,500/sq.ft</p>
+                        <div>
+                          <a href="website-linked-doc/Sleek Surface.docx" class="cera-btn cera-btn-details"
+                            >Details</a
+                          >
+                        </div>
+                      </div>
+                    </div>
+                    <div class="cera-card-body"><h5>Sleek Surfaces</h5></div>
+                  </div>
+                </div>
+              </div>
+              <button class="view-more-btn" data-target="extra-kitchenft">
+                View More
+              </button>
+            </div>
+
+            <!-- OUTDOOR FLOOR TILES -->
+            <div class="col-lg-4 col-md-6 mb-4 tile-col">
+              <h4>Outdoor</h4>
+              <div class="mb-3">
+                <div class="card cera-card">
+                  <div class="cera-image-wrapper">
+                    <img
+                      src="images/outdoor-floor-tiles-img/oft1.jpeg"
+                      alt="Elegant Space"
+                    />
+                    <div class="cera-card-overlay">
+                      <p class="description">
+                        Cool-toned grey floor tiles — seamless, sophisticated
+                        outdoor aesthetic.
+                      </p>
+                      <p class="price">From Rs. 2,500/sq.ft</p>
+                      <div>
+                        <a
+                          href="website-linked-doc/Pebble Haze.docx"
+                          class="cera-btn cera-btn-details"
+                          >Details</a
+                        >
+                      </div>
+                    </div>
+                  </div>
+                  <div class="cera-card-body"><h5>Pebble Haze</h5></div>
+                </div>
+              </div>
+              <div class="extra-cards" id="extra-outdoorft">
+                <div class="mb-3">
+                  <div class="card cera-card">
+                    <div class="cera-image-wrapper">
+                      <img
+                        src="images/outdoor-floor-tiles-img/oft2.jpeg"
+                        alt="Modern"
+                      />
+                      <div class="cera-card-overlay">
+                        <p class="description">
+                          Geometric grey patterns with subtle shading create a
+                          striking 3D illusion.
+                        </p>
+                        <p class="price">From Rs. 3,200/sq.ft</p>
+                        <div>
+                          <a
+                            href="website-linked-doc/Granite Grip.docx"
+                            class="cera-btn cera-btn-details"
+                            >Details</a
+                          >
+                        </div>
+                      </div>
+                    </div>
+                    <div class="cera-card-body">
+                      <h5>Granite Grip</h5>
+                    </div>
+                  </div>
+                </div>
+                <div class="mb-3">
+                  <div class="card cera-card">
+                    <div class="cera-image-wrapper">
+                      <img
+                        src="images/outdoor-floor-tiles-img/oft3.jpeg"
+                        alt="Urban"
+                      />
+                      <div class="cera-card-overlay">
+                        <p class="description">
+                          Sophisticated grey tiles with subtle natural
+                          variation.
+                        </p>
+                        <p class="price">From Rs. 2,800/sq.ft</p>
+                        <div>
+                          <a
+                            href="website-linked-doc/Slate Walk.docx"
+                            class="cera-btn cera-btn-details"
+                            >Details</a
+                          >
+                        </div>
+                      </div>
+                    </div>
+                    <div class="cera-card-body">
+                      <h5>Slate Walk</h5>
+                    </div>
+                  </div>
+                </div>
+                <div class="mb-3">
+                  <div class="card cera-card">
+                    <div class="cera-image-wrapper">
+                      <img
+                        src="images/outdoor-floor-tiles-img/oft4.jpeg"
+                        alt="Sleek"
+                      />
+                      <div class="cera-card-overlay">
+                        <p class="description">
+                          Refined tiles unify the contemporary outdoor space.
+                        </p>
+                        <p class="price">From Rs. 3,500/sq.ft</p>
+                        <div>
+                          <a
+                            href="website-linked-doc/Textured Eath.docx"
+                            class="cera-btn cera-btn-details"
+                            >Details</a
+                          >
+                        </div>
+                      </div>
+                    </div>
+                    <div class="cera-card-body">
+                      <h5>Textured Earth</h5>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <button class="view-more-btn" data-target="extra-outdoorft">
+                View More
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Floor Tiles Row 2: Living Room | Bedroom | Commercial -->
+        <div class="tiles-row-group" id="floortilesSection2">
+          <div class="row">
+            <!-- LIVING ROOM FLOOR TILES -->
+            <div class="col-lg-4 col-md-6 mb-4 tile-col">
+              <h4>Living Room</h4>
+              <div class="mb-3">
+                <div class="card cera-card">
+                  <div class="cera-image-wrapper">
+                    <img
+                      src="images/living-room-floor-tiles/lrft1.jpeg"
+                      alt="Elegant Space"
+                    />
+                    <div class="cera-card-overlay">
+                      <p class="description">
+                        Cool-toned grey floor tiles — seamless and sophisticated
+                        modern aesthetic.
+                      </p>
+                      <p class="price">From Rs. 2,500/sq.ft</p>
+                      <div>
+                        <a
+                          href="website-linked-doc/Wet Room Grey.docx"
+                          class="cera-btn cera-btn-details"
+                          >Details</a
+                        >
+                      </div>
+                    </div>
+                  </div>
+                  <div class="cera-card-body"><h5>Wet Room Grey</h5></div>
+                </div>
+              </div>
+              <div class="extra-cards" id="extra-livingft">
+                <div class="mb-3">
+                  <div class="card cera-card">
+                    <div class="cera-image-wrapper">
+                      <img
+                        src="images/living-room-floor-tiles/lrft2.jpeg"
+                        alt="Modern"
+                      />
+                      <div class="cera-card-overlay">
+                        <p class="description">
+                          Eye-catching geometric grey patterns with subtle
+                          shading create a 3D illusion.
+                        </p>
+                        <p class="price">From Rs. 3,200/sq.ft</p>
+                        <div>
+                          <a
+                            href="website-linked-doc/Storm Path.docx"
+                            class="cera-btn cera-btn-details"
+                            >Details</a
+                          >
+                        </div>
+                      </div>
+                    </div>
+                    <div class="cera-card-body">
+                      <h5>Storm Path</h5>
+                    </div>
+                  </div>
+                </div>
+                <div class="mb-3">
+                  <div class="card cera-card">
+                    <div class="cera-image-wrapper">
+                      <img
+                        src="images/living-room-floor-tiles/lrft3.jpeg"
+                        alt="Urban"
+                      />
+                      <div class="cera-card-overlay">
+                        <p class="description">
+                          Sophisticated grey tiles with subtle natural
+                          variation.
+                        </p>
+                        <p class="price">From Rs. 2,800/sq.ft</p>
+                        <div>
+                          <a
+                            href="website-linked-doc/Ivory Gloss.docx"
+                            class="cera-btn cera-btn-details"
+                            >Details</a
+                          >
+                        </div>
+                      </div>
+                    </div>
+                    <div class="cera-card-body">
+                      <h5>Ivory Gloss</h5>
+                    </div>
+                  </div>
+                </div>
+                <div class="mb-3">
+                  <div class="card cera-card">
+                    <div class="cera-image-wrapper">
+                      <img
+                        src="images/living-room-floor-tiles/lrft4.jpeg"
+                        alt="Sleek"
+                      />
+                      <div class="cera-card-overlay">
+                        <p class="description">
+                          Refined tiles unify the contemporary living room
+                          space.
+                        </p>
+                        <p class="price">From Rs. 3,500/sq.ft</p>
+                        <div>
+                          <a
+                            href="website-linked-doc/Pearl Mirage.docx"
+                            class="cera-btn cera-btn-details"
+                            >Details</a
+                          >
+                        </div>
+                      </div>
+                    </div>
+                    <div class="cera-card-body">
+                      <h5>Pearl Mirage</h5>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <button class="view-more-btn" data-target="extra-livingft">
+                View More
+              </button>
+            </div>
+
+            <!-- BEDROOM FLOOR TILES -->
+            <div class="col-lg-4 col-md-6 mb-4 tile-col">
+              <h4>Bedroom</h4>
+              <div class="mb-3">
+                <div class="card cera-card">
+                  <div class="cera-image-wrapper">
+                    <img
+                      src="images/bedroom-floor-tiles/bdft1.jpeg"
+                      alt="Elegant Space"
+                    />
+                    <div class="cera-card-overlay">
+                      <p class="description">
+                        Cool-toned grey floor tiles — seamless, sophisticated
+                        bedroom aesthetic.
+                      </p>
+                      <p class="price">From Rs. 2,500/sq.ft</p>
+                      <div>
+                        <a
+                          href="website-linked-doc/Terra Flat is a porcelain tile collection of elemental simplicity.docx"
+                          class="cera-btn cera-btn-details"
+                          >Details</a
+                        >
+                      </div>
+                    </div>
+                  </div>
+                  <div class="cera-card-body"><h5>Terra Flat</h5></div>
+                </div>
+              </div>
+              <div class="extra-cards" id="extra-bedroomft">
+                <div class="mb-3">
+                  <div class="card cera-card">
+                    <div class="cera-image-wrapper">
+                      <img src="images/bedroom-floor-tiles/bdft2.jpeg" alt="Modern" />
+                      <div class="cera-card-overlay">
+                        <p class="description">
+                          Eye-catching geometric grey patterns with subtle
+                          shading create a 3D illusion.
+                        </p>
+                        <p class="price">From Rs. 3,200/sq.ft</p>
+                        <div>
+                          <a
+                            href="website-linked-doc/Dusk Slab.docx"
+                            class="cera-btn cera-btn-details"
+                            >Details</a
+                          >
+                        </div>
+                      </div>
+                    </div>
+                    <div class="cera-card-body">
+                      <h5>Dusk Slab</h5>
+                    </div>
+                  </div>
+                </div>
+                <div class="mb-3">
+                  <div class="card cera-card">
+                    <div class="cera-image-wrapper">
+                      <img src="images/bedroom-floor-tiles/bdft3.jpeg" alt="Urban" />
+                      <div class="cera-card-overlay">
+                        <p class="description">
+                          Sophisticated grey tiles with subtle natural variation
+                          for a minimalist feel.
+                        </p>
+                        <p class="price">From Rs. 2,800/sq.ft</p>
+                        <div>
+                          <a
+                            href="website-linked-doc/Open Horizon.docx"
+                            class="cera-btn cera-btn-details"
+                            >Details</a
+                          >
+                        </div>
+                      </div>
+                    </div>
+                    <div class="cera-card-body">
+                      <h5>Open Horizon</h5>
+                    </div>
+                  </div>
+                </div>
+                <div class="mb-3">
+                  <div class="card cera-card">
+                    <div class="cera-image-wrapper">
+                      <img src="images/bedroom-floor-tiles/bdft4.jpeg" alt="Sleek" />
+                      <div class="cera-card-overlay">
+                        <p class="description">
+                          Refined tiles unify the contemporary bedroom space.
+                        </p>
+                        <p class="price">From Rs. 3,500/sq.ft</p>
+                        <div>
+                          <a
+                            href="website-linked-doc/Soft Beige.docx"
+                            class="cera-btn cera-btn-details"
+                            >Details</a
+                          >
+                        </div>
+                      </div>
+                    </div>
+                    <div class="cera-card-body">
+                      <h5>Soft Beige</h5>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <button class="view-more-btn" data-target="extra-bedroomft">
+                View More
+              </button>
+            </div>
+
+            <!-- COMMERCIAL FLOOR TILES -->
+            <div class="col-lg-4 col-md-6 mb-4 tile-col">
+              <h4>Commercial</h4>
+              <div class="mb-3">
+                <div class="card cera-card">
+                  <div class="cera-image-wrapper">
+                    <img
+                      src="images/commercial-space-floor-tiles-img/csft1.jpeg"
+                      alt="Elegant Space"
+                    />
+                    <div class="cera-card-overlay">
+                      <p class="description">
+                        Cool-toned grey floor tiles — seamless, sophisticated
+                        commercial aesthetic.
+                      </p>
+                      <p class="price">From Rs. 2,500/sq.ft</p>
+                      <div>
+                        <a
+                          href="website-linked-doc/Speckled Linen.docx"
+                          class="cera-btn cera-btn-details"
+                          >Details</a
+                        >
+                      </div>
+                    </div>
+                  </div>
+                  <div class="cera-card-body"><h5>Speckled Linen</h5></div>
+                </div>
+              </div>
+              <div class="extra-cards" id="extra-commercialft">
+                <div class="mb-3">
+                  <div class="card cera-card">
+                    <div class="cera-image-wrapper">
+                      <img
+                        src="images/commercial-space-floor-tiles-img/csft2.jpeg"
+                        alt="Modern"
+                      />
+                      <div class="cera-card-overlay">
+                        <p class="description">
+                          Eye-catching geometric grey patterns with subtle
+                          shading create a 3D illusion.
+                        </p>
+                        <p class="price">From Rs. 3,200/sq.ft</p>
+                        <div>
+                          <a
+                            href="website-linked-doc/Shadow Relief.docx"
+                            class="cera-btn cera-btn-details"
+                            >Details</a
+                          >
+                        </div>
+                      </div>
+                    </div>
+                    <div class="cera-card-body"><h5>Morning Stone</h5></div>
+                  </div>
+                </div>
+                <div class="mb-3">
+                  <div class="card cera-card">
+                    <div class="cera-image-wrapper">
+                      <img
+                        src="images/commercial-space-wall-tiles-img/c3.jpeg"
+                        alt="Urban"
+                      />
+                      <div class="cera-card-overlay">
+                        <p class="description">
+                          Sophisticated grey tiles with subtle natural
+                          variation.
+                        </p>
+                        <p class="price">From Rs. 2,800/sq.ft</p>
+                        <div>
+                          <a
+                            href="Anti static.docx"
+                            class="cera-btn cera-btn-details"
+                            >Details</a
+                          >
+                        </div>
+                      </div>
+                    </div>
+                    <div class="cera-card-body"><h5>Blush Drift</h5></div>
+                  </div>
+                </div>
+                <div class="mb-3">
+                  <div class="card cera-card">
+                    <div class="cera-image-wrapper">
+                      <img
+                        src="images/commercial-space-wall-tiles-img/c4.jpeg"
+                        alt="Sleek"
+                      />
+                      <div class="cera-card-overlay">
+                        <p class="description">
+                          Refined tiles unify the contemporary commercial space.
+                        </p>
+                        <p class="price">From Rs. 3,500/sq.ft</p>
+                        <div>
+                          <a
+                            href="website-linked-doc/Hex Cube.docx"
+                            class="cera-btn cera-btn-details"
+                            >Details</a
+                          >
+                        </div>
+                      </div>
+                    </div>
+                    <div class="cera-card-body"><h5>Muted Marble</h5></div>
+                  </div>
+                </div>
+              </div>
+              <button class="view-more-btn" data-target="extra-commercialft">
+                View More
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+     <!-- // View More toggle — no Bootstrap needed -->
+     <script>
+      document.querySelectorAll(".view-more-btn").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const target = document.getElementById(btn.dataset.target);
+          const isOpen = target.classList.toggle("open");
+          btn.classList.toggle("expanded", isOpen);
+          btn.childNodes[0].textContent = isOpen ? "View Less " : "View More ";
+        });
+      });
+    </script>
+    <!-- FLOOR TILES END -->
+
+  </body>
+</html>

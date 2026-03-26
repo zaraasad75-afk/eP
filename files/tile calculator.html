@@ -1,0 +1,496 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+  <style>
+      #tileCalcSection {
+    background-color: #2b2b2b;
+    padding: 70px 0;
+  }
+
+  .tc-header {
+    text-align: center;
+    margin-bottom: 50px;
+  }
+  .tc-header h2 {
+    font-size: 38px;
+    font-weight: 300;
+    color: #ffffff;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    margin-bottom: 10px;
+  }
+  .tc-header h2 span { color: #e0e0e0; }
+  .tc-header p { color: #aaa; font-size: 15px; margin: 0; }
+  .tc-header hr {
+    border: none;
+    border-top: 2px solid #e0e0e0;
+    width: 60px;
+    margin: 16px auto 0;
+  }
+
+  /* ── Calculator Box ── */
+  .tc-box {
+    background: #1e1e1e;
+    border-radius: 16px;
+    padding: 40px;
+    box-shadow: 0 12px 40px rgba(0,0,0,0.4);
+    border: 1px solid #3a3a3a;
+  }
+
+  /* ── Input Groups ── */
+  .tc-label {
+    color: #aaa;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+    display: block;
+  }
+  .tc-input, .tc-select {
+    width: 100%;
+    background: #2b2b2b;
+    border: 1px solid #444;
+    border-radius: 8px;
+    color: #fff;
+    padding: 12px 16px;
+    font-size: 15px;
+    transition: border-color 0.2s;
+    outline: none;
+    appearance: none;
+    -webkit-appearance: none;
+  }
+  .tc-input:focus, .tc-select:focus { border-color: #e0e0e0; }
+  .tc-input::placeholder { color: #666; }
+
+  .tc-select option { background: #2b2b2b; color: #fff; }
+
+  .tc-unit {
+    position: absolute;
+    right: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #e0e0e0;
+    font-size: 13px;
+    font-weight: 600;
+    pointer-events: none;
+  }
+  .tc-input-wrap { position: relative; }
+
+  /* ── Divider ── */
+  .tc-divider {
+    border: none;
+    border-top: 1px solid #3a3a3a;
+    margin: 28px 0;
+  }
+
+  /* ── Calculate Button ── */
+  .tc-calc-btn {
+    width: 100%;
+    background: #5b5b5b;
+    color: #fff;
+    border: none;
+    padding: 15px;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    transition: all 0.25s ease;
+    margin-top: 10px;
+  }
+  .tc-calc-btn:hover {
+    background: #444;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(255,255,255,0.1);
+  }
+
+  /* ── Reset Button ── */
+  .tc-reset-btn {
+    width: 100%;
+    background: transparent;
+    color: #aaa;
+    border: 1px solid #444;
+    padding: 12px;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: all 0.2s;
+  }
+  .tc-reset-btn:hover { border-color: #888; color: #fff; }
+
+  /* ── Results Panel ── */
+  #tc-results {
+    display: none;
+    animation: fadeInUp 0.35s ease;
+  }
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .tc-result-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    margin-bottom: 20px;
+  }
+
+  .tc-result-card {
+    background: #2b2b2b;
+    border-radius: 12px;
+    padding: 20px 18px;
+    border: 1px solid #3a3a3a;
+    text-align: center;
+    transition: border-color 0.2s;
+  }
+  .tc-result-card:hover { border-color: #e0e0e0; }
+  .tc-result-card .rc-icon { font-size: 1.8rem; margin-bottom: 8px; }
+  .tc-result-card .rc-value {
+    font-size: 26px;
+    font-weight: 700;
+    color: #e0e0e0;
+    line-height: 1.1;
+    margin-bottom: 4px;
+  }
+  .tc-result-card .rc-label {
+    color: #888;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+  }
+
+  /* highlight main result */
+  .tc-result-card.main-result {
+    grid-column: span 2;
+    background: #111;
+    border-color: #e0e0e0;
+  }
+  .tc-result-card.main-result .rc-value { font-size: 36px; }
+
+  /* ── Tip inside results ── */
+  .tc-result-tip {
+    background: #111;
+    border-left: 4px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 14px 18px;
+    color: #aaa;
+    font-size: 13px;
+    line-height: 1.6;
+  }
+  .tc-result-tip strong { color: #e0e0e0; }
+
+  /* ── Section label ── */
+  .tc-section-label {
+    color: #e0e0e0;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 18px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .tc-section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: #3a3a3a;
+  }
+
+  /* ── Wastage Slider ── */
+  .tc-slider {
+    width: 100%;
+    accent-color: #e0e0e0;
+    cursor: pointer;
+    height: 6px;
+  }
+  .tc-slider-labels {
+    display: flex;
+    justify-content: space-between;
+    color: #666;
+    font-size: 11px;
+    margin-top: 4px;
+  }
+
+  @media (max-width: 576px) {
+    .tc-box { padding: 24px 16px; }
+    .tc-result-grid { grid-template-columns: 1fr; }
+    .tc-result-card.main-result { grid-column: span 1; }
+  }
+</style>
+<!-- ── END STEP 1 ── -->
+  </style>
+</head>
+<body>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<!-- ── STEP 2: HTML SECTION ── paste after your Tile Guide section ── -->
+<section id="tileCalcSection">
+  <div class="container">
+
+    <!-- Header -->
+    <div class="tc-header">
+      <h2>Tiles <span>Calculator</span></h2>
+      <p>Find out exactly how many tiles you need — no guesswork, no waste</p>
+      <hr>
+    </div>
+
+    <div class="row justify-content-center">
+      <div class="col-12 col-lg-10 col-xl-9">
+        <div class="tc-box">
+          <div class="row g-4">
+
+            <!-- LEFT: Inputs -->
+            <div class="col-12 col-md-6">
+
+              <!-- Room Dimensions -->
+              <div class="tc-section-label">📏 Room Dimensions</div>
+
+              <div class="row g-3 mb-3">
+                <div class="col-6">
+                  <label class="tc-label">Room Length</label>
+                  <div class="tc-input-wrap">
+                    <input type="number" id="tc-room-length" class="tc-input" placeholder="e.g. 12" min="1">
+                    <span class="tc-unit">ft</span>
+                  </div>
+                </div>
+                <div class="col-6">
+                  <label class="tc-label">Room Width</label>
+                  <div class="tc-input-wrap">
+                    <input type="number" id="tc-room-width" class="tc-input" placeholder="e.g. 10" min="1">
+                    <span class="tc-unit">ft</span>
+                  </div>
+                </div>
+              </div>
+
+              <hr class="tc-divider">
+
+              <!-- Tile Size -->
+              <div class="tc-section-label">🔲 Tile Size</div>
+
+              <div class="mb-3">
+                <label class="tc-label">Select Tile Size</label>
+                <select id="tc-tile-size" class="tc-select">
+                  <option value="">-- Choose a size --</option>
+                  <option value="1">12" × 12"  (1 sq.ft per tile)</option>
+                  <option value="1.5">12" × 18"  (1.5 sq.ft per tile)</option>
+                  <option value="2">12" × 24"  (2 sq.ft per tile)</option>
+                  <option value="2.25">18" × 18"  (2.25 sq.ft per tile)</option>
+                  <option value="4">24" × 24"  (4 sq.ft per tile)</option>
+                  <option value="8">24" × 48"  (8 sq.ft per tile)</option>
+                  <option value="16">48" × 48"  (16 sq.ft per tile)</option>
+                </select>
+              </div>
+
+              <div class="mb-3">
+                <label class="tc-label">Tiles Per Box</label>
+                <div class="tc-input-wrap">
+                  <input type="number" id="tc-tiles-per-box" class="tc-input" placeholder="e.g. 6" min="1" value="6">
+                  <span class="tc-unit">tiles</span>
+                </div>
+              </div>
+
+              <hr class="tc-divider">
+
+              <!-- Price -->
+              <div class="tc-section-label">💰 Price (Optional)</div>
+
+              <div class="mb-3">
+                <label class="tc-label">Price Per Sq.Ft</label>
+                <div class="tc-input-wrap">
+                  <input type="number" id="tc-price" class="tc-input" placeholder="e.g. 2500" min="0">
+                  <span class="tc-unit">Rs.</span>
+                </div>
+              </div>
+
+              <hr class="tc-divider">
+
+              <!-- Wastage -->
+              <div class="tc-section-label">♻️ Wastage Buffer</div>
+
+              <div class="mb-4">
+                <label class="tc-label">Extra Tiles: <span id="tc-wastage-val" style="color:#e0e0e0;">10%</span></label>
+                <input type="range" id="tc-wastage" class="tc-slider" min="5" max="20" value="10" step="5">
+                <div class="tc-slider-labels">
+                  <span>5% (Simple)</span>
+                  <span>10% (Standard)</span>
+                  <span>15% (Pattern)</span>
+                  <span>20% (Complex)</span>
+                </div>
+              </div>
+
+              <!-- Buttons -->
+              <button class="tc-calc-btn" id="tc-calculate-btn">🧮 Calculate Now</button>
+              <button class="tc-reset-btn" id="tc-reset-btn">↺ Reset</button>
+            </div>
+
+            <!-- RIGHT: Results -->
+            <div class="col-12 col-md-6 d-flex flex-column justify-content-center">
+
+              <!-- Placeholder before calculation -->
+              <div id="tc-placeholder" style="text-align:center; padding: 40px 20px;">
+                <div style="font-size:4rem; margin-bottom:16px;">🧮</div>
+                <p style="color:#555; font-size:15px; line-height:1.7;">
+                  Fill in your room dimensions,<br>select a tile size & hit<br>
+                  <strong style="color:#e0e0e0;">Calculate Now</strong>
+                </p>
+              </div>
+
+              <!-- Results (hidden until calculated) -->
+              <div id="tc-results">
+                <div class="tc-section-label">📊 Your Results</div>
+
+                <div class="tc-result-grid">
+
+                  <!-- Main: Total Tiles -->
+                  <div class="tc-result-card main-result">
+                    <div class="rc-icon">🔲</div>
+                    <div class="rc-value" id="res-total-tiles">—</div>
+                    <div class="rc-label">Total Tiles Needed (incl. wastage)</div>
+                  </div>
+
+                  <!-- Room Area -->
+                  <div class="tc-result-card">
+                    <div class="rc-icon">📐</div>
+                    <div class="rc-value" id="res-area">—</div>
+                    <div class="rc-label">Room Area (sq.ft)</div>
+                  </div>
+
+                  <!-- Boxes -->
+                  <div class="tc-result-card">
+                    <div class="rc-icon">📦</div>
+                    <div class="rc-value" id="res-boxes">—</div>
+                    <div class="rc-label">Boxes to Buy</div>
+                  </div>
+
+                  <!-- Base tiles -->
+                  <div class="tc-result-card">
+                    <div class="rc-icon">🧱</div>
+                    <div class="rc-value" id="res-base-tiles">—</div>
+                    <div class="rc-label">Base Tiles (no wastage)</div>
+                  </div>
+
+                  <!-- Extra tiles -->
+                  <div class="tc-result-card">
+                    <div class="rc-icon">♻️</div>
+                    <div class="rc-value" id="res-extra-tiles">—</div>
+                    <div class="rc-label">Extra Wastage Tiles</div>
+                  </div>
+
+                </div>
+
+                <!-- Cost (only if price entered) -->
+                <div id="res-cost-wrap" style="display:none; margin-bottom:16px;">
+                  <div class="tc-result-card" style="border-color:#e0e0e0; background:#111;">
+                    <div class="rc-icon">💰</div>
+                    <div class="rc-value" id="res-cost">—</div>
+                    <div class="rc-label">Estimated Total Cost</div>
+                  </div>
+                </div>
+
+                <!-- Tip -->
+                <div class="tc-result-tip">
+                  💡 <strong>Pro Tip:</strong> Always buy tiles from the <strong>same batch</strong> — colors can vary slightly between batches. Buy all boxes at once!
+                </div>
+
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+<!-- ── END STEP 2 ── -->
+
+
+<!-- ── STEP 3: SCRIPT ── paste near your other scripts before </body> ── -->
+<script>
+$(document).ready(function () {
+
+  // Wastage slider live label
+  $('#tc-wastage').on('input', function () {
+    $('#tc-wastage-val').text($(this).val() + '%');
+  });
+
+  // Calculate
+  $('#tc-calculate-btn').click(function () {
+    var length      = parseFloat($('#tc-room-length').val());
+    var width       = parseFloat($('#tc-room-width').val());
+    var tileSize    = parseFloat($('#tc-tile-size').val());
+    var tilesPerBox = parseInt($('#tc-tiles-per-box').val()) || 6;
+    var price       = parseFloat($('#tc-price').val());
+    var wastage     = parseInt($('#tc-wastage').val()) / 100;
+
+    // Validation
+    if (!length || !width || length <= 0 || width <= 0) {
+      alert('Please enter valid room length and width!');
+      return;
+    }
+    if (!tileSize) {
+      alert('Please select a tile size!');
+      return;
+    }
+
+    var area       = length * width;
+    var baseTiles  = Math.ceil(area / tileSize);
+    var extraTiles = Math.ceil(baseTiles * wastage);
+    var totalTiles = baseTiles + extraTiles;
+    var boxes      = Math.ceil(totalTiles / tilesPerBox);
+
+    // Show results
+    $('#res-area').text(area.toFixed(1));
+    $('#res-base-tiles').text(baseTiles);
+    $('#res-extra-tiles').text(extraTiles);
+    $('#res-total-tiles').text(totalTiles);
+    $('#res-boxes').text(boxes);
+
+    // Cost
+    if (price && price > 0) {
+      var totalCost = area * price;
+      $('#res-cost').text('Rs. ' + totalCost.toLocaleString('en-IN'));
+      $('#res-cost-wrap').show();
+    } else {
+      $('#res-cost-wrap').hide();
+    }
+
+    $('#tc-placeholder').hide();
+    $('#tc-results').show();
+  });
+
+  // Reset
+  $('#tc-reset-btn').click(function () {
+    $('#tc-room-length, #tc-room-width, #tc-price').val('');
+    $('#tc-tiles-per-box').val('6');
+    $('#tc-tile-size').val('');
+    $('#tc-wastage').val('10');
+    $('#tc-wastage-val').text('10%');
+    $('#tc-results').hide();
+    $('#tc-placeholder').show();
+  });
+
+});
+</script>
+<!-- ── END STEP 3 ── -->
+
+
+
+
+
+
+
+
+</body>
+</html>

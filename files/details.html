@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tiles Company</title>
+
+<style>
+/* GLOBAL STYLES */
+* {
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  background:#f5f5f5;
+  color:#333;
+  line-height:1.6;
+}
+
+/* HEADER */
+header {
+  background:#222;
+  color:white;
+  padding:20px 50px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  flex-wrap:wrap;
+}
+
+header h1 {
+  font-size:28px;
+}
+
+nav a {
+  color:white;
+  margin-left:20px;
+  text-decoration:none;
+  font-size:16px;
+  transition:0.3s;
+}
+
+nav a:hover {
+  color:#f39c12;
+}
+
+/* HERO */
+.hero {
+  height:450px;
+  background:url("/images/blogs/bg1.jpg") center/cover no-repeat;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  position:relative;
+}
+
+.hero::after {
+  content:"";
+  position:absolute;
+  top:0; left:0; right:0; bottom:0;
+  background:rgba(0,0,0,0.5);
+}
+
+.hero h2 {
+  position:relative;
+  color:white;
+  font-size:42px;
+  padding:20px 30px;
+  background:rgba(0,0,0,0.6);
+  border-radius:10px;
+  letter-spacing:1px;
+}
+
+/* SECTIONS */
+section {
+  max-width:1200px;
+  margin:40px auto;
+  padding:50px 20px;
+  background:white;
+  border-radius:12px;
+  box-shadow:0 8px 20px rgba(0,0,0,0.05);
+}
+
+section h2 {
+  font-size:32px;
+  margin-bottom:30px;
+  text-align:center;
+  color:#111;
+}
+
+/* PRODUCTS */
+.products {
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:25px;
+}
+
+.product {
+  background:#fafafa;
+  border-radius:12px;
+  padding:20px;
+  text-align:center;
+  box-shadow:0 8px 15px rgba(0,0,0,0.1);
+  transition:0.3s;
+}
+
+.product:hover {
+  transform:translateY(-8px);
+  box-shadow:0 12px 25px rgba(0,0,0,0.15);
+}
+
+.product img {
+  width:100%;
+  height:180px;
+  object-fit:cover;
+  border-radius:10px;
+  margin-bottom:15px;
+}
+
+.product h3 {
+  font-size:20px;
+  margin-bottom:10px;
+  color:#111;
+}
+
+.product p {
+  font-size:15px;
+  color:#555;
+}
+
+/* CONTACT FORM */
+.contact-form {
+  max-width:700px;
+  margin:auto;
+  display:flex;
+  flex-direction:column;
+  gap:15px;
+}
+
+.contact-form input,
+.contact-form textarea {
+  width:100%;
+  padding:15px;
+  border-radius:10px;
+  border:1px solid #ccc;
+  font-size:16px;
+  transition:0.3s;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  border-color:#f39c12;
+  box-shadow:0 0 15px rgba(243,156,18,0.3);
+  outline:none;
+}
+
+.contact-form button {
+  background:#f39c12;
+  color:white;
+  border:none;
+  padding:15px;
+  font-size:16px;
+  border-radius:10px;
+  cursor:pointer;
+  transition:0.3s;
+}
+
+.contact-form button:hover {
+  background:#d68910;
+  transform:scale(1.05);
+}
+
+/* FOOTER */
+footer {
+  background:#222;
+  color:white;
+  text-align:center;
+  padding:25px 15px;
+  margin-top:30px;
+  font-size:14px;
+  letter-spacing:0.5px;
+}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+  header {
+    flex-direction:column;
+    text-align:center;
+  }
+  nav a {
+    margin:10px 10px 0 10px;
+  }
+  .hero h2 {
+    font-size:28px;
+    padding:15px 20px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>CERA'S</h1>
+  <nav>
+    <a href="#">Home</a>
+    <a href="#about">About</a>
+    <a href="#products">Products</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
+
+<div class="hero">
+  <h2 style="color: white;">High Quality Tiles For Your Home</h2>
+</div>
+
+<section id="about">
+  <h2>About Us</h2>
+  <p>
+    We provide high-quality tiles for homes, offices, and commercial spaces. Our tiles are designed with modern styles and durable materials to ensure beauty and longevity.
+  </p>
+</section>
+
+<section id="products">
+  <h2>Our Tiles</h2>
+  <div class="products">
+    <div class="product">
+      <img src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6" alt="Wall Tiles">
+      <h3>Wall Tiles</h3>
+      <p>Durable and stylish tiles for walls.</p>
+    </div>
+
+    <div class="product">
+      <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c" alt="Floor Tiles">
+      <h3>Floor Tiles</h3>
+      <p>Modern, long-lasting floor tiles.</p>
+    </div>
+
+    <div class="product">
+      <img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a" alt="Special Tiles">
+      <h3>Special Tiles</h3>
+      <p>Water-resistant and anti-slip premium tiles.</p>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <h2>Contact Us</h2>
+  <form class="contact-form">
+    <input type="text" placeholder="Your Name" required>
+    <input type="email" placeholder="Your Email" required>
+    <textarea rows="5" placeholder="Your Message"></textarea>
+    <button type="submit">Send Message</button>
+  </form>
+</section>
+
+<footer>
+  <p>© 2026 Tiles Company | All Rights Reserved</p>
+  <p>Phone: +92 XXX XXX XXXX | Email: info@tiles.com</p>
+</footer>
+
+</body>
+</html>

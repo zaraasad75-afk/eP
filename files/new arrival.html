@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CERA — New Arrivals</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+* {
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+:root {
+  --black:#0f0f0f;
+  --dark:#181818;
+  --grey:#5e5e5e;
+  --white:#f6f6f6;
+  --gold:#c9a96e;
+  --border:rgba(255,255,255,0.08);
+}
+body {
+  font-family:'DM Sans', sans-serif;
+  background:var(--black);
+  color:var(--white);
+  line-height:1.6;
+}
+/* header */
+.header {
+  text-align:center;
+  padding:80px 20px 60px;
+  border-bottom:1px solid var(--border);
+}
+.header h1 {
+  font-family:'Cormorant Garamond', serif;
+  font-size:56px;
+  letter-spacing:6px;
+  font-weight:400;
+}
+.header span {
+  color:var(--gold);
+}
+.header p {
+  margin-top:12px;
+  color:#aaa;
+  font-size:16px;
+}
+/* section */
+.new-arrivals {
+  max-width:1200px;
+  margin:auto;
+  padding:60px 30px 80px;
+}
+.new-arrivals h2 {
+  font-family:'Cormorant Garamond', serif;
+  font-size:36px;
+  color:var(--gold);
+  margin-bottom:40px;
+  text-align:center;
+}
+.product-grid {
+  display:grid;
+  grid-template-columns:repeat(auto-fit, minmax(220px, 1fr));
+  gap:30px;
+}
+.product-card {
+  background:var(--dark);
+  border:1px solid var(--border);
+  border-radius:12px;
+  overflow:hidden;
+  transition:0.3s;
+}
+.product-card:hover {
+  border-color:var(--gold);
+  transform:translateY(-5px);
+}
+.product-card img {
+  width:100%;
+  display:block;
+}
+.product-info {
+  padding:20px;
+  text-align:center;
+}
+.product-info h3 {
+  font-family:'Cormorant Garamond', serif;
+  font-size:20px;
+  color:var(--white);
+  margin-bottom:10px;
+}
+.product-info p {
+  color:#aaa;
+  font-size:14px;
+  margin-bottom:12px;
+}
+.product-info span {
+  color:var(--gold);
+  font-weight:500;
+  font-size:16px;
+}
+/* footer */
+.footer {
+  text-align:center;
+  padding:30px;
+  border-top:1px solid var(--border);
+  color:#777;
+  font-size:13px;
+}
+/* responsive */
+@media(max-width:768px){
+  .header h1 {
+    font-size:40px;
+  }
+  .new-arrivals h2 {
+    font-size:28px;
+  }
+  .product-info h3 {
+    font-size:18px;
+  }
+}
+</style>
+</head>
+<body>
+
+<header class="header">
+<h1>CERA'S</h1>
+<p>Explore Our Latest Tile Collections</p>
+</header>
+
+<section class="new-arrivals">
+<h2>New Arrivals</h2>
+<div class="product-grid">
+  <div class="product-card">
+    <img src="images/bathroom-floor-tiles-img/btrft1.jpeg" alt="Tile 1">
+    <div class="product-info">
+      <h3>Elegant Marble</h3>
+      <p>Premium white marble tile with smooth finish.</p>
+      <span>$45/sq.ft</span>
+    </div>
+  </div>
+  <div class="product-card">
+    <img src="images/bedroom-floor-tiles/bdft1.jpeg" alt="Tile 2">
+    <div class="product-info">
+      <h3>Classic Granite</h3>
+      <p>Durable granite tile perfect for floors and walls.</p>
+      <span>$50/sq.ft</span>
+    </div>
+  </div>
+  <div class="product-card">
+    <img src="images/outdoor-floor-tiles-img/oft1.jpeg" alt="Tile 3">
+    <div class="product-info">
+      <h3>Patterned Ceramic</h3>
+      <p>Artistic ceramic tile with timeless patterns.</p>
+      <span>$40/sq.ft</span>
+    </div>
+  </div>
+  <div class="product-card">
+    <img src="images/commercial-space-floor-tiles-img/csft1.jpeg" alt="Tile 4">
+    <div class="product-info">
+      <h3>Luxury Porcelain</h3>
+      <p>High-quality porcelain tile for modern interiors.</p>
+      <span>$55/sq.ft</span>
+    </div>
+  </div>
+</div>
+</section>
+
+<footer class="footer">
+© 2026 CERA Tiles — All Rights Reserved
+</footer>
+
+</body>
+</html>
+

@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CERA — Design Consultation</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+* {
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+:root {
+  --black:#0f0f0f;
+  --dark:#181818;
+  --grey:#5e5e5e;
+  --white:#f6f6f6;
+  --gold:#c9a96e;
+  --border:rgba(255,255,255,0.08);
+}
+body {
+  font-family:'DM Sans', sans-serif;
+  background:var(--black);
+  color:var(--white);
+  line-height:1.6;
+}
+/* header */
+.header {
+  text-align:center;
+  padding:80px 20px 60px;
+  border-bottom:1px solid var(--border);
+}
+.header h1 {
+  font-family:'Cormorant Garamond', serif;
+  font-size:56px;
+  letter-spacing:6px;
+  font-weight:400;
+}
+.header span {
+  color:var(--gold);
+}
+.header p {
+  margin-top:12px;
+  color:#aaa;
+  font-size:16px;
+}
+/* main section */
+.consultation {
+  max-width:1000px;
+  margin:auto;
+  padding:60px 30px 80px;
+}
+.consultation h2 {
+  font-family:'Cormorant Garamond', serif;
+  font-size:36px;
+  color:var(--gold);
+  margin-bottom:40px;
+  text-align:center;
+}
+.consultation p {
+  font-size:16px;
+  color:#ccc;
+  margin-bottom:20px;
+  line-height:1.8;
+  text-align:justify;
+}
+.form-container {
+  background:var(--dark);
+  padding:40px 30px;
+  border-radius:12px;
+  border:1px solid var(--border);
+  margin-top:40px;
+}
+.form-container h3 {
+  font-family:'Cormorant Garamond', serif;
+  color:var(--gold);
+  margin-bottom:20px;
+  text-align:center;
+}
+.form-container form {
+  display:flex;
+  flex-direction:column;
+  gap:18px;
+}
+.form-container input,
+.form-container textarea,
+.form-container select {
+  padding:12px 15px;
+  border-radius:8px;
+  border:1px solid var(--border);
+  background:var(--black);
+  color:var(--white);
+  font-size:14px;
+}
+.form-container input:focus,
+.form-container textarea:focus,
+.form-container select:focus {
+  outline:none;
+  border-color:var(--gold);
+}
+.form-container button {
+  padding:12px;
+  border:none;
+  border-radius:8px;
+  background:var(--gold);
+  color:var(--black);
+  font-weight:500;
+  cursor:pointer;
+  transition:0.3s;
+}
+.form-container button:hover {
+  background:#b59150;
+}
+/* footer */
+.footer {
+  text-align:center;
+  padding:30px;
+  border-top:1px solid var(--border);
+  color:#777;
+  font-size:13px;
+}
+/* responsive */
+@media(max-width:768px){
+  .header h1 {
+    font-size:40px;
+  }
+  .consultation h2 {
+    font-size:28px;
+  }
+}
+</style>
+</head>
+<body>
+
+<header class="header">
+<h1>CERA<span>.</span></h1>
+<p>Schedule Your Personalized Design Consultation</p>
+</header>
+
+<section class="consultation">
+<h2>Design Consultation</h2>
+<p>At CERA Tiles, we believe every space deserves a unique touch. Our Design Consultation service is here to guide you in selecting the perfect tiles for your interiors and exteriors. Whether you are planning a new project, renovating, or looking for inspiration, our expert designers will help you make informed choices that blend functionality, durability, and aesthetic elegance. From floor patterns to wall accents, our goal is to ensure every detail reflects your personal style and enhances your living or working environment.</p>
+<p>Our consultants can advise on tile selection, layout design, color combinations, and installation tips. We also provide virtual consultations, mood board suggestions, and on-site guidance for larger projects. This service is perfect for homeowners, architects, and interior designers who want to achieve a sophisticated and timeless look for their spaces.</p>
+
+<div class="form-container">
+<h3>Request a Consultation</h3>
+<form>
+<input type="text" name="name" placeholder="Your Name" required>
+<input type="email" name="email" placeholder="Your Email" required>
+<input type="text" name="phone" placeholder="Phone Number" required>
+<select name="service" required>
+<option value="">Select Service</option>
+<option value="home">Home Project</option>
+<option value="office">Office Project</option>
+<option value="other">Other</option>
+</select>
+<textarea name="message" rows="5" placeholder="Project Details / Questions"></textarea>
+<button type="submit">Submit Request</button>
+</form>
+</div>
+</section>
+
+<footer class="footer">
+© 2026 CERA Tiles — All Rights Reserved
+</footer>
+
+</body>
+</html>

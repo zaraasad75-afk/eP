@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CERA — Sitemap</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+:root{
+  --black:#0f0f0f;
+  --dark:#181818;
+  --grey:#5e5e5e;
+  --white:#f6f6f6;
+  --gold:#c9a96e;
+  --border:rgba(255,255,255,0.08);
+}
+body{
+  font-family:'DM Sans',sans-serif;
+  background:var(--black);
+  color:var(--white);
+  line-height:1.6;
+}
+/* header */
+.header{
+  text-align:center;
+  padding:80px 20px 60px;
+  border-bottom:1px solid var(--border);
+}
+.header h1{
+  font-family:'Cormorant Garamond',serif;
+  font-size:56px;
+  letter-spacing:6px;
+  font-weight:400;
+}
+.header span{
+  color:var(--gold);
+}
+.header p{
+  margin-top:12px;
+  color:#aaa;
+  font-size:14px;
+}
+/* sitemap container */
+.sitemap{
+  max-width:1200px;
+  margin:auto;
+  padding:60px 30px 80px;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:40px;
+}
+/* column */
+.sitemap-column{
+  background:var(--dark);
+  border:1px solid var(--border);
+  border-radius:10px;
+  padding:30px 26px;
+  transition:0.3s;
+}
+.sitemap-column:hover{
+  border-color:var(--gold);
+  transform:translateY(-5px);
+}
+.sitemap-column h3{
+  font-family:'Cormorant Garamond',serif;
+  font-size:22px;
+  margin-bottom:18px;
+  color:var(--gold);
+  letter-spacing:1px;
+}
+/* links */
+.sitemap-column ul{
+  list-style:none;
+}
+.sitemap-column li{
+  margin-bottom:10px;
+}
+.sitemap-column a{
+  text-decoration:none;
+  color:#ccc;
+  font-size:14px;
+  transition:0.2s;
+}
+.sitemap-column a:hover{
+  color:white;
+  padding-left:6px;
+}
+/* footer */
+.footer{
+  text-align:center;
+  padding:30px;
+  border-top:1px solid var(--border);
+  color:#777;
+  font-size:13px;
+}
+/* responsive */
+@media(max-width:768px){
+  .header h1{
+    font-size:40px;
+  }
+  .sitemap{
+    gap:28px;
+  }
+}
+</style>
+</head>
+<body>
+
+<header class="header">
+<h1>CERA'S<span></span></h1>
+<p>Website Sitemap</p>
+</header>
+
+<section class="sitemap">
+
+<div class="sitemap-column">
+<h3>Home</h3>
+<ul>
+<li><a href="index.html">Homepage</a></li>
+<li><a href="about.html">About CERA'S</a></li>
+<li><a href="All cards .html">Collections</a></li>
+<li><a href="new arrival.html">New Arrivals</a></li>
+</ul>
+</div>
+
+<div class="sitemap-column">
+<h3>Products</h3>
+<ul>
+<li><a href="sepearate wall tiles.html">Wall Tiles</a></li>
+<li><a href="seperate floor tiles.html">Floor Tiles</a></li>
+<li><a href="seperate special tiles.html">Special Tiles</a></li>
+</ul>
+</div>
+
+<div class="sitemap-column">
+<h3>Services</h3>
+<ul>
+<li><a href="find a store.html">Find a Store</a></li>
+<li><a href="design consultation.html">Design Consultation</a></li>
+<li><a href="installation support.html">Installation Support</a></li>
+<li><a href="bulk order.html">Bulk Orders</a></li>
+</ul>
+</div>
+
+<div class="sitemap-column">
+<h3>Account</h3>
+<ul>
+<li><a href="sign in.html">Sign In</a></li>
+<li><a href="create account.html">Create Account</a></li>
+<li><a href="order tracking.html">Order Tracking</a></li>
+</ul>
+</div>
+
+<div class="sitemap-column">
+<h3>Support</h3>
+<ul>
+<li><a href="contact.html">Contact Us</a></li>
+<li><a href="return.html">Returns</a></li>
+</ul>
+</div>
+
+<div class="sitemap-column">
+<h3>Legal</h3>  
+<ul>
+<li><a href="privacy policy.html">Privacy Policy</a></li>
+<li><a href="terms of service.html">Terms & Conditions</a></li>
+</ul>
+</div>
+
+</section>
+
+<footer class="footer">
+© 2026 CERA Tiles — All Rights Reserved
+</footer>
+
+</body>
+</html>
